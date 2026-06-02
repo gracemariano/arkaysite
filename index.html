@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Management Meeting Notes — Kaneff Family Council</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #0a0f14;
+      --bg-panel: #121a24;
+      --bg-card: #182230;
+      --gold: #c9a962;
+      --gold-light: #e8d5a3;
+      --cream: #f4f0e8;
+      --muted: #8b9aab;
+      --accent: #4a7c9e;
+      --success: #5d9e7a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg-deep);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      z-index: 200;
+      transition: width 0.15s ease-out;
+    }
+
+    .snap-section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem clamp(1.5rem, 5vw, 6rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .snap-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 20% 30%, rgba(201, 169, 98, 0.07), transparent 60%),
+                  radial-gradient(ellipse 60% 50% at 90% 80%, rgba(74, 124, 158, 0.06), transparent 50%);
+      pointer-events: none;
+    }
+
+    .snap-section > * { position: relative; z-index: 1; }
+
+    h1, h2, h3, .display {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1.display {
+      font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+      line-height: 1.08;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.9rem, 4.2vw, 3rem);
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+
+    .subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 44rem;
+      margin-top: 0.75rem;
+    }
+
+    nav.progress {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    nav.progress a {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(201, 169, 98, 0.2);
+      border: 1px solid rgba(201, 169, 98, 0.45);
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    nav.progress a:hover,
+    nav.progress a.active {
+      background: var(--gold);
+      transform: scale(1.4);
+      box-shadow: 0 0 12px rgba(201, 169, 98, 0.5);
+    }
+
+    nav.progress a span { display: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(201, 169, 98, 0.45);
+      border-radius: 2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .meta-row strong { color: var(--cream); font-weight: 500; }
+
+    .participants {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 2rem;
+    }
+
+    .participant {
+      padding: 0.55rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(201, 169, 98, 0.22);
+      border-radius: 4px;
+      font-size: 0.88rem;
+    }
+
+    .participant strong { color: var(--gold-light); font-weight: 500; }
+    .participant span { color: var(--muted); font-size: 0.78rem; display: block; margin-top: 0.12rem; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.15rem;
+      margin-top: 1.75rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 1.35rem 1.5rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.65rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.92rem;
+      color: rgba(244, 240, 232, 0.88);
+    }
+
+    .card ul { margin-left: 1.05rem; margin-top: 0.45rem; }
+    .card li { margin-bottom: 0.35rem; }
+
+    .num-card {
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      background: linear-gradient(160deg, var(--bg-card), #1e2a3c);
+      border: 1px solid rgba(201, 169, 98, 0.25);
+      border-radius: 8px;
+    }
+
+    .num-card .value {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--gold);
+      line-height: 1.1;
+    }
+
+    .num-card .desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+      line-height: 1.35;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.75rem;
+    }
+
+    .stat .num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.8rem 0.95rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    th {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    td { color: rgba(244, 240, 232, 0.92); }
+
+    .tag {
+      display: inline-block;
+      padding: 0.18rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-now { background: rgba(93, 158, 122, 0.25); color: #8fd4b0; }
+    .tag-soon { background: rgba(201, 169, 98, 0.2); color: var(--gold-light); }
+    .tag-later { background: rgba(74, 124, 158, 0.25); color: #8bb8d4; }
+
+    .timeline {
+      margin-top: 1.5rem;
+      border-left: 2px solid rgba(201, 169, 98, 0.35);
+      padding-left: 1.6rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 1.75rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.6rem;
+      top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      margin-left: -6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--bg-deep);
+    }
+
+    .timeline-item h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.28rem;
+      color: var(--gold-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item p { color: var(--muted); font-size: 0.9rem; }
+
+    .risk-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .checklist li {
+      list-style: none;
+      padding: 0.5rem 0 0.5rem 1.65rem;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .checklist li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.55rem;
+      top: 0.62rem;
+    }
+
+    .disclaimer {
+      font-size: 0.72rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 0.85rem;
+      margin-top: 1.5rem;
+      max-width: 52rem;
+    }
+
+    .section-scroll-wide { max-width: 72rem; width: 100%; }
+    .section-scroll-inner { max-width: 56rem; }
+
+    .snap-section.tall {
+      justify-content: flex-start;
+      padding-top: 4.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .highlight-num {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      nav.progress { display: none; }
+    }
+
+    @media print {
+      .progress-bar, nav.progress { display: none; }
+      .snap-section { min-height: auto; page-break-after: always; }
+      html { scroll-snap-type: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <nav class="progress" aria-label="Section navigation">
+    <a href="#hero" title="Cover"></a>
+    <a href="#key-numbers" title="Key numbers"></a>
+    <a href="#summary" title="Summary"></a>
+    <a href="#vision" title="Vision"></a>
+    <a href="#participants" title="People"></a>
+    <a href="#roles" title="Roles"></a>
+    <a href="#governance" title="Governance"></a>
+    <a href="#ownership" title="Ownership"></a>
+    <a href="#timeline" title="Timeline"></a>
+    <a href="#operations" title="Operations"></a>
+    <a href="#financial" title="Financial"></a>
+    <a href="#risks" title="Risks"></a>
+    <a href="#actions" title="Actions"></a>
+    <a href="#next" title="Next"></a>
+  </nav>
+
+  <!-- COVER -->
+  <section id="hero" class="snap-section">
+    <span class="badge">Confidential — Management Working Session</span>
+    <p class="eyebrow">Executive Assistant Brief · Meeting Notes</p>
+    <h1 class="display">Kaneff Family<br />Management Meeting</h1>
+    <p class="subtitle">
+      Full scroll-stopping summary for principals and advisors. Each panel locks in place as you scroll — use for live review in session.
+    </p>
+    <div class="meta-row">
+      <span><strong>Date:</strong> June 2, 2026</span>
+      <span><strong>Topic:</strong> Succession &amp; governance transition</span>
+      <span><strong>Prepared by:</strong> Executive assistant (working draft)</span>
+    </div>
+    <div class="participants">
+      <div class="participant"><strong>Michell Kaneff</strong><span>Principal / incumbent leadership</span></div>
+      <div class="participant"><strong>Josh Kaneff</strong><span>Successor track — operations &amp; development</span></div>
+      <div class="participant"><strong>Max Kaneff</strong><span>Successor track — portfolio &amp; strategy</span></div>
+      <div class="participant"><strong>Walter Shiels</strong><span>External advisor — governance &amp; legal</span></div>
+    </div>
+    <p class="scroll-hint">Scroll ↓ — each section stops</p>
+  </section>
+
+  <!-- KEY NUMBERS -->
+  <section id="key-numbers" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">At a glance</p>
+      <h2 class="section-title">Important Numbers &amp; Thresholds</h2>
+      <p class="subtitle">All material figures referenced in this session — confirm in writing with counsel before execution.</p>
+
+      <div class="grid-3">
+        <div class="num-card"><div class="value">3–5 yr</div><div class="desc">Planned leadership transition window</div></div>
+        <div class="num-card"><div class="value">$5M</div><div class="desc">Michell veto — dispositions (until Year 3)</div></div>
+        <div class="num-card"><div class="value">$10M</div><div class="desc">New development — final approval Y1–Y2</div></div>
+        <div class="num-card"><div class="value">$250K</div><div class="desc">Dual signatory threshold on operating accounts (by Y2)</div></div>
+        <div class="num-card"><div class="value">25,000 sf</div><div class="desc">Leasing — Max lead (anchor / large deals)</div></div>
+        <div class="num-card"><div class="value">Q3 '26</div><div class="desc">Target signed family charter</div></div>
+        <div class="num-card"><div class="value">2</div><div class="desc">Successor tracks (Josh / Max)</div></div>
+        <div class="num-card"><div class="value">3 of 3</div><div class="desc">Family council quorum</div></div>
+        <div class="num-card"><div class="value">10 days</div><div class="desc">Extraordinary council session if deal &gt; $5M</div></div>
+        <div class="num-card"><div class="value">48 hr</div><div class="desc">First step — principal dispute discussion</div></div>
+        <div class="num-card"><div class="value">90 days</div><div class="desc">Buy-sell deadlock trigger; shadowing on closings (2026)</div></div>
+        <div class="num-card"><div class="value">6 mo</div><div class="desc">Minimum liquidity reserve (G&amp;A + known capex)</div></div>
+        <div class="num-card"><div class="value">5%</div><div class="desc">LTV buffer below covenant max</div></div>
+        <div class="num-card"><div class="value">3 yr</div><div class="desc">LTI cliff; Michell lender intros through Y3</div></div>
+        <div class="num-card"><div class="value">7 yr</div><div class="desc">Council minutes retention</div></div>
+        <div class="num-card"><div class="value">2019</div><div class="desc">Last insurance / trust review — refresh required</div></div>
+        <div class="num-card"><div class="value">Jun 15</div><div class="desc">Estate counsel engagement letters (Michell)</div></div>
+        <div class="num-card"><div class="value">Jun 30</div><div class="desc">Investment committee draft (Max)</div></div>
+        <div class="num-card"><div class="value">30 days</div><div class="desc">Walter — charter outline v0.1; buy-sell markup</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section id="summary" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 01 · Executive summary</p>
+      <h2 class="section-title">Purpose &amp; Agreed Direction</h2>
+      <p class="subtitle">Preserve enterprise value, clarify decision rights, and phase leadership without disrupting tenants, lenders, or key staff.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="num">3–5 yr</div><div class="label">Transition window</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">Successor tracks</div></div>
+        <div class="stat"><div class="num">1</div><div class="label">Governance advisor</div></div>
+        <div class="stat"><div class="num">Q3 '26</div><div class="label">Signed charter target</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Problems addressed</h3>
+          <ul>
+            <li>Concentration of signing authority and relationships in one generation</li>
+            <li>Unclear path for Josh vs. Max as both mature into leadership</li>
+            <li>Estate / corporate structure misaligned with operating reality</li>
+            <li>Need for documented policies before major refinancing or asset sales</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Decisions from this meeting</h3>
+          <ul>
+            <li><strong>Dual-track succession:</strong> Josh — development &amp; construction; Max — asset management, capital allocation, acquisitions</li>
+            <li>Michell retains chair-level veto on debt, dispositions <span class="highlight-num">&gt;$5M</span>, and new market entry until <strong>Year 3</strong></li>
+            <li>Walter Shiels coordinates legal, tax, and insurance with external counsel</li>
+            <li>Quarterly family council with written minutes — no verbal-only ownership decisions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision" class="snap-section">
+    <div class="section-scroll-inner">
+      <p class="eyebrow">Section 02</p>
+      <h2 class="section-title">Vision &amp; Principles</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>10-year vision</h3>
+          <p>Professionally governed, multi-generational real estate platform where family contributes as executives, directors, or passive owners — not by default entitlement. Brand and lender relationships remain as strong as under the founding generation.</p>
+        </div>
+        <div class="card">
+          <h3>Guiding principles</h3>
+          <ul>
+            <li><strong>Merit before title</strong> — roles via performance and external benchmarks</li>
+            <li><strong>One voice to the market</strong> — unified messaging on material deals</li>
+            <li><strong>Transparency among owners</strong> — quarterly reporting to all equity holders</li>
+            <li><strong>Preserve optionality</strong> — no forced sale of core income assets for estate tax without plan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTICIPANTS -->
+  <section id="participants" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 03</p>
+      <h2 class="section-title">Participants &amp; Mandates</h2>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Current role</th><th>Succession mandate</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Michell Kaneff</strong></td>
+            <td>President; primary lender &amp; partner relationships</td>
+            <td>→ Executive Chair; mentor successors; strategic relationships through Year 3</td>
+            <td><span class="tag tag-now">Incumbent</span></td>
+          </tr>
+          <tr>
+            <td><strong>Josh Kaneff</strong></td>
+            <td>VP Development — acquisition, entitlements, construction</td>
+            <td>President (Operations) by end of Year 3; full dev P&amp;L by Year 2</td>
+            <td><span class="tag tag-soon">Track A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Max Kaneff</strong></td>
+            <td>Director, Asset Management — leasing, capex, dispositions</td>
+            <td>Chief Investment Officer; chair investment committee by Year 2</td>
+            <td><span class="tag tag-soon">Track B</span></td>
+          </tr>
+          <tr>
+            <td><strong>Walter Shiels</strong></td>
+            <td>External governance advisor (non-operating)</td>
+            <td>Family charter, voting trusts, succession policy; dispute facilitation</td>
+            <td><span class="tag tag-later">Advisor</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section id="roles" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 04</p>
+      <h2 class="section-title">Role Clarity Matrix</h2>
+      <p class="subtitle">Decision rights after transition — prevents overlap between Josh and Max.</p>
+      <table>
+        <thead>
+          <tr><th>Decision area</th><th>Michell (Y1–Y3)</th><th>Josh</th><th>Max</th><th>Joint / Council</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New development &gt; <span class="highlight-num">$10M</span></td>
+            <td>Final approval Y1–Y2</td>
+            <td>Lead — underwriting &amp; execution</td>
+            <td>Capital stack input</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Acquisition / disposition</td>
+            <td>Veto &gt; <span class="highlight-num">$5M</span> until Y3</td>
+            <td>Construction-related assets</td>
+            <td>Lead — investment memo</td>
+            <td>Family council if split vote</td>
+          </tr>
+          <tr>
+            <td>Leasing &gt; <span class="highlight-num">25,000 sf</span> or anchor</td>
+            <td>Informed</td>
+            <td>Dev tenant coordination</td>
+            <td>Lead approval</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Senior hires (C-suite)</td>
+            <td>Co-approval Y1</td>
+            <td>Ops division</td>
+            <td>AM / finance roles</td>
+            <td>Unanimous principals Y2+</td>
+          </tr>
+          <tr>
+            <td>Annual budget</td>
+            <td>Chair sign-off</td>
+            <td>Dev capex &amp; construction</td>
+            <td>Portfolio opex / TI</td>
+            <td>Board ratification</td>
+          </tr>
+          <tr>
+            <td>Banking relationships</td>
+            <td>Lead intro Y1–Y3</td>
+            <td>Project-level draws</td>
+            <td>Covenant reporting</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GOVERNANCE -->
+  <section id="governance" class="snap-section">
+    <div class="section-scroll-inner">
+      <p class="eyebrow">Section 05</p>
+      <h2 class="section-title">Governance Structure</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Family council</h3>
+          <ul>
+            <li>Members: Michell, Josh, Max (+ spouses when equity affected)</li>
+            <li>Quorum: <strong>3 of 3</strong> principals; Walter attends as non-voting secretary</li>
+            <li>Quarterly meetings; extraordinary session within <strong>10 days</strong> for deals &gt; <strong>$5M</strong></li>
+            <li>Minutes in secure data room — <strong>7-year</strong> retention</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Operating board</h3>
+          <ul>
+            <li>Independent directors: <strong>1</strong> by Year 2, <strong>2</strong> by Year 4</li>
+            <li>Audit &amp; compensation committees before Michell relinquishes chair</li>
+            <li>Walter coordinates charter, bylaws, shareholder agreements</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Dispute resolution</h3>
+          <p>(1) <strong>48-hour</strong> principal discussion → (2) Walter-facilitated mediation → (3) binding arbitration (Ontario) for operational deadlocks. Ownership disputes: supermajority per draft charter.</p>
+        </div>
+        <div class="card">
+          <h3>Employment vs. ownership</h3>
+          <p>Non-employed shareholders receive distributions per class rights only. Employment termination does not auto-trigger buyout; formula in separate agreement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OWNERSHIP -->
+  <section id="ownership" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 06</p>
+      <h2 class="section-title">Ownership &amp; Estate Alignment</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Current state (confirm with counsel)</h3>
+          <ul>
+            <li>Holdco / opco stack with multiple property SPVs</li>
+            <li>Voting control concentrated — economic interests may differ</li>
+            <li>Insurance &amp; trusts last reviewed <strong>2019</strong> — refresh required</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Target structure</h3>
+          <ul>
+            <li>Voting trust for unified control during transition</li>
+            <li>Gradual economic transfer (estate freeze or equivalent) — tax model by <strong>Q4</strong></li>
+            <li>Key-person insurance aligned to debt covenants</li>
+            <li>Tag-along / drag-along for third-party sales</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.15rem;">
+        <h3>Buy-sell triggers (draft)</h3>
+        <p>Death, disability, voluntary exit, termination for cause, or deadlock <strong>&gt; 90 days</strong>. Valuation: independent appraiser + EBITDA multiple floor/ceiling. First refusal: family → company → third party. Walter to circulate markup within <strong>30 days</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 07</p>
+      <h2 class="section-title">Transition Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Phase 0 — Now through Q3 2026</h4>
+          <p>Engage tax/estate counsel; draft family charter; document decision log; Josh &amp; Max each lead one material project end-to-end (Michell observer only).</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 1 — Q4 2026 to Q2 2027</h4>
+          <p>Sign charter; investment committee (Max chair); development committee (Josh chair); Michell signs only over threshold. Introduce successors to top-<strong>5</strong> lender contacts.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 2 — Q3 2027 to Q4 2028</h4>
+          <p>Michell → Executive Chair; <strong>1</strong> independent director; 360 reviews for Josh &amp; Max; estate freeze if tax model approved.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 3 — 2029 onward</h4>
+          <p>Josh &amp; Max as co-CEOs or President/CIO per charter; Michell optional advisory; annual succession tabletop; next-gen pipeline if applicable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATIONS -->
+  <section id="operations" class="snap-section">
+    <div class="section-scroll-inner">
+      <p class="eyebrow">Section 08</p>
+      <h2 class="section-title">Operational Continuity</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Knowledge transfer</h3>
+          <ul>
+            <li>Relationship register: lenders, municipalities, anchor tenants</li>
+            <li><strong>90-day</strong> shadowing on all material closings in 2026</li>
+            <li>Recorded interviews on historical deal rationale (internal)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Key person risk</h3>
+          <ul>
+            <li>Deputy authority matrix for draws and leasing</li>
+            <li>CFO &amp; GC dotted-line to both successors in Y2</li>
+            <li>No single signatory &gt; <strong>$250K</strong> without dual approval by Y2</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Culture &amp; staff</h3>
+          <p>All-hands after charter signing; retention for critical PM/construction staff; no succession-related layoffs in transition year without council vote.</p>
+        </div>
+        <div class="card">
+          <h3>Technology</h3>
+          <p>Centralize portfolio data; successor admin access <strong>Q2 2026</strong>; Michell read-only audit log.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIAL -->
+  <section id="financial" class="snap-section">
+    <div class="section-scroll-inner">
+      <p class="eyebrow">Section 09</p>
+      <h2 class="section-title">Financial Guardrails</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Leverage &amp; liquidity</h3>
+          <ul>
+            <li>Portfolio LTV: covenant max minus <strong>5%</strong> buffer</li>
+            <li>Minimum liquidity: <strong>6 months</strong> G&amp;A + known capex</li>
+            <li>No new personal guarantees from next generation without council approval</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Compensation</h3>
+          <ul>
+            <li>Market benchmarks (REIT / private peer set)</li>
+            <li>LTI tied to NAV &amp; development margin — <strong>3-year</strong> cliff</li>
+            <li>Michell transition comp documented separately</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Distributions</h3>
+          <p>Sustainable payout after reserves, debt service, and development funding. Non-employed shareholders: predictable quarterly formula in charter.</p>
+        </div>
+        <div class="card">
+          <h3>Reporting</h3>
+          <p>Monthly: cash, covenants. Quarterly: full board pack to council. Annual: audited financials + independent valuation summary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section id="risks" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 10</p>
+      <h2 class="section-title">Risk Register</h2>
+      <div class="risk-matrix">
+        <div class="card">
+          <h3>Sibling / principal conflict</h3>
+          <p><strong>Likelihood:</strong> Medium · <strong>Impact:</strong> High</p>
+          <p>Mitigation: role matrix, Walter mediation, no split authority on same deal.</p>
+        </div>
+        <div class="card">
+          <h3>Lender confidence</h3>
+          <p><strong>Likelihood:</strong> Low–Med · <strong>Impact:</strong> High</p>
+          <p>Mitigation: joint lender roadshow Phase 1; Michell through Year 3.</p>
+        </div>
+        <div class="card">
+          <h3>Estate tax / liquidity</h3>
+          <p><strong>Likelihood:</strong> Med · <strong>Impact:</strong> High</p>
+          <p>Mitigation: insurance refresh, freeze modeling, avoid fire-sale language.</p>
+        </div>
+        <div class="card">
+          <h3>Key staff departure</h3>
+          <p><strong>Likelihood:</strong> Med · <strong>Impact:</strong> Med</p>
+          <p>Mitigation: retention plan, documented processes, comp review.</p>
+        </div>
+        <div class="card">
+          <h3>Market downturn</h3>
+          <p><strong>Likelihood:</strong> Med · <strong>Impact:</strong> Med</p>
+          <p>Mitigation: pause non-core development; crisis tree in charter.</p>
+        </div>
+        <div class="card">
+          <h3>Governance gap</h3>
+          <p><strong>Likelihood:</strong> Low · <strong>Impact:</strong> High</p>
+          <p>Mitigation: independent directors, written minutes, unified comms policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIONS -->
+  <section id="actions" class="snap-section tall">
+    <div class="section-scroll-wide">
+      <p class="eyebrow">Section 11</p>
+      <h2 class="section-title">Action Items</h2>
+      <ul class="checklist card" style="list-style: none; margin-top: 1.25rem;">
+        <li><strong>Michell</strong> — Approve estate counsel &amp; insurance engagement letters by <span class="highlight-num">June 15, 2026</span></li>
+        <li><strong>Josh</strong> — End-to-end development case study at next council (<strong>July 2026</strong>)</li>
+        <li><strong>Max</strong> — Investment committee draft charter &amp; agenda by <span class="highlight-num">June 30, 2026</span></li>
+        <li><strong>Walter Shiels</strong> — Family charter outline v0.1 within <span class="highlight-num">30 days</span>; schedule 2-hour governance workshop</li>
+        <li><strong>All principals</strong> — Estate document inventory for counsel (secure upload)</li>
+        <li><strong>Shared</strong> — Document thresholds (<span class="highlight-num">$5M</span> disposition, <span class="highlight-num">$10M</span> development) for Michell veto this week</li>
+        <li><strong>CFO (external)</strong> — 3-year cash &amp; covenant model under dual-leadership scenario</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section id="next" class="snap-section">
+    <div class="section-scroll-inner">
+      <p class="eyebrow">Section 12</p>
+      <h2 class="section-title">Next Meeting</h2>
+      <div class="card">
+        <h3>Family council — Q3 2026 (90 minutes)</h3>
+        <ul>
+          <li>Review Walter’s charter outline v0.1</li>
+          <li>Josh development case study + Max investment committee proposal</li>
+          <li>Ratify financial thresholds and Phase 0 completion checklist</li>
+        </ul>
+      </div>
+      <p class="disclaimer" style="margin-top: 1.75rem;">
+        Michell Kaneff, Josh Kaneff, Max Kaneff, Walter Shiels · June 2, 2026 · Working management notes — validate all figures and legal points with qualified advisors before execution.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll(".snap-section");
+    const dots = document.querySelectorAll("nav.progress a");
+    const progressBar = document.getElementById("progressBar");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            dots.forEach((d) => {
+              d.classList.toggle("active", d.getAttribute("href") === `#${id}`);
+            });
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(dot.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = docHeight > 0 ? `${(scrollTop / docHeight) * 100}%` : "0%";
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+
+    const sectionIds = Array.from(sections).map((s) => s.id);
+    let currentIndex = 0;
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== "PageDown" && e.key !== "PageUp") return;
+      e.preventDefault();
+      const active = document.querySelector(".snap-section:target") || sections[0];
+      currentIndex = sectionIds.indexOf(
+        [...sections].find((s) => s.getBoundingClientRect().top >= -window.innerHeight * 0.45)?.id || sectionIds[0]
+      );
+      if (e.key === "ArrowDown" || e.key === "PageDown") currentIndex = Math.min(currentIndex + 1, sections.length - 1);
+      else currentIndex = Math.max(currentIndex - 1, 0);
+      sections[currentIndex].scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
