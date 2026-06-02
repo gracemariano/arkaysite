@@ -6,331 +6,435 @@
   <title>Arkay May Management Meeting — May 13, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0e12;
-      --panel: #141a22;
-      --card: #1c2430;
-      --ink: #f0f2f5;
-      --muted: #8a96a8;
-      --accent: #e85d2c;
-      --accent-soft: #ff8a5c;
-      --teal: #3d9ea9;
-      --lime: #7bc67e;
-      --border: rgba(255,255,255,0.07);
+      --bg: #eef1f6;
+      --surface: #ffffff;
+      --surface-muted: #f8f9fb;
+      --text: #1a2332;
+      --text-muted: #5c6b7f;
+      --border: #e2e8f0;
+      --primary: #1e4d8c;
+      --primary-soft: #e8f0fa;
+      --accent: #c45c26;
+      --moving: #fef3c7;
+      --moving-text: #92400e;
+      --done: #d1fae5;
+      --done-text: #065f46;
+      --next: #dbeafe;
+      --next-text: #1e40af;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+      --radius: 12px;
+      --header-h: 7.5rem;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
 
     body {
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
       background: var(--bg);
-      color: var(--ink);
-      line-height: 1.55;
-      overflow-x: hidden;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
     }
 
-    .progress-bar {
-      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--teal));
-      z-index: 200;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
-    .snap-section {
-      min-height: 100vh;
-      min-height: 100dvh;
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 0.75rem;
+    }
+
+    .brand-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .date-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--surface-muted);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding-bottom: 0.25rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .tab-nav a:hover { background: var(--surface-muted); color: var(--text); }
+
+    .tab-nav a.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .panel {
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4.5rem clamp(1.25rem, 4vw, 5rem);
-      position: relative;
+      margin-bottom: 2.5rem;
+      padding-top: 0.5rem;
     }
 
-    .snap-section::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 50% at 10% 20%, rgba(232, 93, 44, 0.08), transparent 55%),
-                  radial-gradient(ellipse 50% 40% at 95% 85%, rgba(61, 158, 169, 0.06), transparent 50%);
-      pointer-events: none;
+    .panel-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
     }
 
-    .snap-section > * { position: relative; z-index: 1; }
-    .snap-section.tall { justify-content: flex-start; padding-top: 5rem; padding-bottom: 3rem; }
-
-    h1, h2, h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
-    h1.display { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; }
-    h2.title { font-size: clamp(1.85rem, 3.8vw, 2.75rem); color: var(--accent-soft); margin-bottom: 0.35rem; }
-
-    .eyebrow {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-    }
-
-    .lede { color: var(--muted); font-size: 1.05rem; max-width: 40rem; margin-top: 0.5rem; }
-
-    nav.dots {
-      position: fixed; right: 1rem; top: 50%; transform: translateY(-50%);
-      z-index: 100; display: flex; flex-direction: column; gap: 0.45rem;
-    }
-
-    nav.dots a {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    nav.dots a.active, nav.dots a:hover {
-      background: var(--accent); transform: scale(1.35);
-      box-shadow: 0 0 10px rgba(232, 93, 44, 0.45);
-    }
-
-    nav.dots a span { display: none; }
-
-    .badge {
-      display: inline-block; padding: 0.3rem 0.85rem;
-      border: 1px solid rgba(232, 93, 44, 0.45); border-radius: 999px;
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent-soft); margin-bottom: 1.25rem;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.85rem;
-      margin-top: 1.75rem;
-    }
-
-    .metric {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.1rem 1.15rem;
-    }
-
-    .metric .label {
-      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--muted); margin-bottom: 0.35rem;
-    }
-
-    .metric .april { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
-    .metric .ytd { font-size: 0.82rem; color: var(--teal); margin-top: 0.35rem; }
-
-    .num-hero {
-      font-family: "Instrument Serif", serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--accent-soft);
-      line-height: 1.1;
+    .panel h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
 
     .card {
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.4rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .card:last-child { margin-bottom: 0; }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .card p, .card li { color: var(--text); font-size: 0.92rem; }
+    .card ul { margin-left: 1.15rem; }
+    .card li { margin-bottom: 0.4rem; }
+
+    .hl { color: var(--primary); font-weight: 600; }
+
+    .summary-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .summary-list li {
+      position: relative;
+      padding: 0.55rem 0 0.55rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    .summary-list li:last-child { border-bottom: none; }
+
+    .summary-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.95rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-card .stat-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .stat-card .stat-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
       margin-top: 1rem;
     }
 
-    .card h3 {
-      font-size: 1.15rem;
-      color: var(--accent-soft);
-      margin-bottom: 0.6rem;
-      font-family: "Instrument Serif", serif;
+    .hero-stat {
+      background: var(--primary-soft);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid rgba(30, 77, 140, 0.12);
     }
 
-    .card ul { margin-left: 1.1rem; }
-    .card li { margin-bottom: 0.45rem; font-size: 0.92rem; color: rgba(240,242,245,0.9); }
-    .card p { font-size: 0.92rem; color: rgba(240,242,245,0.88); }
+    .hero-stat .v {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-    .hl { color: var(--accent-soft); font-weight: 600; }
+    .hero-stat .l {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      line-height: 1.3;
+    }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
-      margin-top: 1.25rem;
     }
+
+    .update-card {
+      position: relative;
+      padding-top: 0.25rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+    }
+
+    .badge-section { background: var(--surface-muted); color: var(--text-muted); }
+    .badge-moving { background: var(--moving); color: var(--moving-text); }
+    .badge-done { background: var(--done); color: var(--done-text); }
+    .badge-next { background: var(--next); color: var(--next-text); }
+
+    .callout {
+      background: var(--surface-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.15rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+  .callout strong { color: var(--text); }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
-      margin-top: 1rem;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
     }
 
     th, td {
       text-align: left;
-      padding: 0.75rem 0.9rem;
+      padding: 0.8rem 1rem;
       border-bottom: 1px solid var(--border);
       vertical-align: top;
     }
 
     th {
-      color: var(--accent);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      background: var(--surface-muted);
+      font-size: 0.72rem;
       font-weight: 700;
-    }
-
-    td { color: rgba(240,242,245,0.92); }
-    td strong { color: var(--ink); font-weight: 600; }
-
-  .actions-table td:first-child { white-space: nowrap; width: 28%; }
-
-    .stat-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem 2.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .stat-strip .item .n {
-      font-family: "Instrument Serif", serif;
-      font-size: 2rem;
-      color: var(--accent-soft);
-      line-height: 1;
-    }
-
-    .stat-strip .item .d {
-      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-top: 0.2rem;
-      max-width: 10rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
     }
 
-    .policy-box {
-      border-left: 3px solid var(--accent);
-      padding: 0.85rem 1rem;
-      background: rgba(232, 93, 44, 0.08);
-      border-radius: 0 8px 8px 0;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
+    tr:last-child td { border-bottom: none; }
 
-    .footer-note {
-      font-size: 0.72rem;
-      color: var(--muted);
+    .footer-ref {
       margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      padding: 1rem 1.15rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      animation: fade 2s ease-in-out infinite;
-    }
-
-    @keyframes fade {
-      0%, 100% { opacity: 0.35; }
-      50% { opacity: 1; }
-    }
-
-    .wrap { max-width: 72rem; width: 100%; }
-    .wrap-narrow { max-width: 56rem; width: 100%; }
+    .footer-ref strong { color: var(--text); display: block; margin-bottom: 0.35rem; }
 
     @media (max-width: 640px) {
-      nav.dots { display: none; }
-      .actions-table { font-size: 0.78rem; }
-    }
-
-    @media print {
-      nav.dots, .progress-bar { display: none; }
-      .snap-section { min-height: auto; page-break-after: always; }
-      html { scroll-snap-type: none; }
+      .brand { font-size: 1rem; }
+      .tab-nav a { font-size: 0.72rem; padding: 0.4rem 0.65rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="progress-bar" id="progressBar"></div>
-
-  <nav class="dots" aria-label="Sections">
-    <a href="#hero" title="Cover"></a>
-    <a href="#metrics" title="Metrics"></a>
-    <a href="#customers" title="Customers"></a>
-    <a href="#financial" title="Financial"></a>
-    <a href="#operations" title="Operations"></a>
-    <a href="#technology" title="Technology"></a>
-    <a href="#hr" title="HR"></a>
-    <a href="#leadership" title="Leadership"></a>
-    <a href="#actions" title="Actions"></a>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero" class="snap-section">
-    <div class="wrap-narrow">
-      <span class="badge">Confidential · Management Minutes</span>
-      <p class="eyebrow">Arkay Packaging</p>
-      <h1 class="display">May Management<br />Meeting Notes</h1>
-      <p class="lede">May 13, 2026 — full summary for leadership review. Scroll — each section stops in place.</p>
-      <div class="stat-strip">
-        <div class="item"><div class="n">+$300K</div><div class="d">April billing vs. last year</div></div>
-        <div class="item"><div class="n">96%</div><div class="d">April operating profit vs. budget</div></div>
-        <div class="item"><div class="n">245</div><div class="d">Headcount (cap 250)</div></div>
-        <div class="item"><div class="n">8 wk</div><div class="d">Factory backlog</div></div>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand">Arkay Management Meeting Notes</div>
+        <span class="date-pill">May 13, 2026</span>
       </div>
-      <p class="scroll-hint">Scroll ↓</p>
+      <nav class="tab-nav" aria-label="Sections">
+        <a href="#summary" class="active">Summary</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#customers">Customers</a>
+        <a href="#financial">Financial</a>
+        <a href="#operations">Operations</a>
+        <a href="#technology">Technology</a>
+        <a href="#hr">HR</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#actions">Actions</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- KEY METRICS -->
-  <section id="metrics" class="snap-section tall">
-    <div class="wrap">
-      <p class="eyebrow">Key metrics</p>
-      <h2 class="title">April &amp; Year-to-Date</h2>
-      <div class="metrics-grid">
-        <div class="metric">
-          <div class="label">Billing vs. LY</div>
-          <div class="april">+$300K</div>
-          <div class="ytd">Billings +8.2% YTD</div>
+  <main>
+
+    <!-- SUMMARY -->
+    <section id="summary" class="panel">
+      <p class="panel-label">Meeting overview</p>
+      <h2>Meeting Summary</h2>
+
+      <div class="card">
+        <ul class="summary-list">
+          <li>April billing <span class="hl">+$300K</span> vs. last year; billings <span class="hl">+8.2%</span> YTD; bookings <span class="hl">+$6.5M</span> vs. LY.</li>
+          <li>Operating profit at <span class="hl">96%</span> of April budget; YTD <span class="hl">86%</span> of target (up from <span class="hl">78%</span>).</li>
+          <li>Factory fully sold — <span class="hl">8-week</span> backlog; overtime <span class="hl">$60K/week</span>; headcount <span class="hl">245</span> (cap <span class="hl">250</span>).</li>
+          <li>May billing target <span class="hl">$7.5M</span> (stretch <span class="hl">$8M</span>); four pay periods = ~<span class="hl">$350–400K</span> bottom-line benefit vs. April.</li>
+          <li>AI/ERP Phase 1 (<span class="hl">$375K</span> / <span class="hl">90 days</span>) paused; back-office IT fixes proceeding immediately.</li>
+          <li>Selective pricing increases <span class="hl">5–7%</span>; board price locked until <span class="hl">Nov 2026</span>.</li>
+        </ul>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="v">+$300K</div><div class="l">April billing vs. LY</div></div>
+        <div class="hero-stat"><div class="v">96%</div><div class="l">April OP vs. budget</div></div>
+        <div class="hero-stat"><div class="v">245</div><div class="l">Headcount (cap 250)</div></div>
+        <div class="hero-stat"><div class="v">8 wk</div><div class="l">Factory backlog</div></div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section id="metrics" class="panel">
+      <p class="panel-label">Key metrics</p>
+      <h2>April &amp; Year-to-Date</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Billing vs. LY</div>
+          <div class="stat-value">+$300K</div>
+          <div class="stat-sub">Billings +8.2% YTD</div>
         </div>
-        <div class="metric">
-          <div class="label">Operating profit vs. target</div>
-          <div class="april">96% of budget</div>
-          <div class="ytd">86% of target YTD (up from 78%)</div>
+        <div class="stat-card">
+          <div class="stat-label">Operating profit vs. target</div>
+          <div class="stat-value">96%</div>
+          <div class="stat-sub">of April budget · 86% YTD (up from 78%)</div>
         </div>
-        <div class="metric">
-          <div class="label">Cartons shipped / accepted</div>
-          <div class="april">27.5M shipped · 99.9% acceptance</div>
-          <div class="ytd">92M shipped · 99.98% acceptance YTD</div>
+        <div class="stat-card">
+          <div class="stat-label">Cartons shipped / accepted</div>
+          <div class="stat-value">27.5M</div>
+          <div class="stat-sub">99.9% acceptance · 92M YTD · 99.98%</div>
         </div>
-        <div class="metric">
-          <div class="label">Customer complaints / do-overs</div>
-          <div class="april">6 complaints (5 valid)</div>
-          <div class="ytd">3 do-overs · 36,095 cartons · $14,590</div>
+        <div class="stat-card">
+          <div class="stat-label">Customer complaints / do-overs</div>
+          <div class="stat-value">6</div>
+          <div class="stat-sub">5 valid · YTD: 3 do-overs · 36,095 cartons · $14,590</div>
         </div>
-        <div class="metric">
-          <div class="label">Headcount</div>
-          <div class="april">245 (cap: 250)</div>
-          <div class="ytd">Bookings +$6.5M vs. LY</div>
+        <div class="stat-card">
+          <div class="stat-label">Headcount</div>
+          <div class="stat-value">245</div>
+          <div class="stat-sub">Cap: 250 · Bookings +$6.5M vs. LY</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CUSTOMERS -->
-  <section id="customers" class="snap-section tall">
-    <div class="wrap">
-      <p class="eyebrow">1 · Customers &amp; business development</p>
-      <h2 class="title">Customers &amp; Business Development</h2>
+    <!-- CUSTOMERS -->
+    <section id="customers" class="panel">
+      <p class="panel-label">Section 1</p>
+      <h2>Customers &amp; Business Development</h2>
 
       <div class="grid-2">
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Estée Lauder</h3>
           <ul>
             <li>Summit attendance ~<span class="hl">200</span> (selective — core suppliers only)</li>
@@ -340,7 +444,8 @@
             <li>Facility visit (Bernice Vittori, SVP Global Quality) targeted <span class="hl">Sep/Oct</span></li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Revlon ColorSilk 3L</h3>
           <ul>
             <li><span class="hl">9M+</span> cartons since Mar 2025; ~<span class="hl">$1.2M</span> in sales; zero rejects</li>
@@ -349,7 +454,8 @@
             <li>OG version (~<span class="hl">$5M</span> opp) still pending answer</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Oral-B</h3>
           <ul>
             <li>Line trial qualification complete; answer expected next week</li>
@@ -358,11 +464,13 @@
             <li>Exploring inline embossing</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Crest Whitening</h3>
           <p>New proof in progress. Unique holographic engineering may enable <span class="hl">1-pass printing</span> — could win full line.</p>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Olaplex</h3>
           <ul>
             <li>~<span class="hl">6</span> new projects awarded</li>
@@ -370,16 +478,19 @@
             <li>Account projected <span class="hl">&gt;$1M</span></li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-section">Customer</span>
           <h3>Femcare division</h3>
           <p>Inquired about capacity increase. Confirmed scale to ~<span class="hl">5M cartons/month</span> (from <span class="hl">1.3–1.5M</span> current).</p>
         </div>
-        <div class="card">
+        <div class="card update-card">
+          <span class="badge badge-done">Highlight</span>
           <h3>P&amp;G Brown Summit</h3>
           <p>Zero downtime in April under Zero Touch Program (skincare). Diamond gets Super Serum cartons only; Arkay retains all others.</p>
         </div>
-        <div class="card">
-          <h3>New business</h3>
+        <div class="card update-card">
+          <span class="badge badge-moving">New business</span>
+          <h3>Pipeline</h3>
           <ul>
             <li><strong>Bubble</strong> — inline business won</li>
             <li><strong>LifeVac</strong> — CVS / Walgreens / Costco; 4 SKUs</li>
@@ -388,8 +499,9 @@
             <li><strong>Deciem / The Ordinary</strong> — targeting pre-Lauder integration</li>
           </ul>
         </div>
-        <div class="card">
-          <h3>Pricing</h3>
+        <div class="card update-card">
+          <span class="badge badge-next">Pricing</span>
+          <h3>Pricing policy</h3>
           <ul>
             <li>Factory oversold — selective increases applied (<span class="hl">5–7%</span>)</li>
             <li>Tiered pricing for small/startup orders</li>
@@ -397,17 +509,16 @@
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FINANCIAL -->
-  <section id="financial" class="snap-section">
-    <div class="wrap-narrow">
-      <p class="eyebrow">2 · Financial performance</p>
-      <h2 class="title">Financial Performance</h2>
+    <!-- FINANCIAL -->
+    <section id="financial" class="panel">
+      <p class="panel-label">Section 2</p>
+      <h2>Financial Performance</h2>
+
       <div class="grid-2">
         <div class="card">
-          <h3>April positives</h3>
+          <span class="badge badge-done">April positives</span>
           <ul>
             <li>Billing <span class="hl">+$300K</span> vs. LY</li>
             <li>Operating profit at <span class="hl">96%</span> of April budget</li>
@@ -418,7 +529,7 @@
           </ul>
         </div>
         <div class="card">
-          <h3>April cost pressures</h3>
+          <span class="badge badge-moving">April cost pressures</span>
           <ul>
             <li><span class="hl">5</span> pay periods (vs. 4 LY)</li>
             <li>Overtime <span class="hl">+$100K</span> (running <span class="hl">$60K/wk</span> vs. <span class="hl">$30K</span>)</li>
@@ -428,26 +539,32 @@
           </ul>
         </div>
       </div>
-      <div class="card" style="margin-top: 1rem;">
-        <h3>May target</h3>
-        <p class="num-hero">$7.5M billing <span style="font-size: 0.55em; color: var(--muted);">(stretch $8M)</span></p>
-        <p style="margin-top: 0.5rem;"><span class="hl">4</span> pay periods in May = ~<span class="hl">$350–400K</span> bottom-line benefit vs. April.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- OPERATIONS -->
-  <section id="operations" class="snap-section tall">
-    <div class="wrap">
-      <p class="eyebrow">3 · Operations &amp; manufacturing</p>
-      <h2 class="title">Operations &amp; Manufacturing</h2>
+      <div class="stat-grid" style="margin-top: 1rem;">
+        <div class="stat-card">
+          <div class="stat-label">May billing target</div>
+          <div class="stat-value">$7.5M</div>
+          <div class="stat-sub">Stretch goal: $8M</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">May pay-period benefit</div>
+          <div class="stat-value">$350–400K</div>
+          <div class="stat-sub">4 pay periods vs. 5 in April</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONS -->
+    <section id="operations" class="panel">
+      <p class="panel-label">Section 3</p>
+      <h2>Operations &amp; Manufacturing</h2>
 
       <div class="card">
-        <h3>Capacity</h3>
+        <span class="badge badge-moving">Capacity</span>
         <p>Factory <strong>fully sold</strong>. <span class="hl">8-week</span> backlog. Overtime at <span class="hl">$60K/week</span>. Strategy: reduce make-ready time vs. adding headcount. Max 3-shift theoretical capacity: ~<span class="hl">5M cartons/month</span>.</p>
       </div>
 
-      <div class="grid-2">
+      <div class="grid-2" style="margin-top: 1rem;">
         <div class="card">
           <h3>KPI / data collection</h3>
           <ul>
@@ -492,23 +609,23 @@
         </div>
       </div>
 
-      <div class="policy-box">
+      <div class="callout">
         <strong>Customer communication policy:</strong> Do <strong>NOT</strong> tell customers we are busy or behind. Use only: <em>“manufacturing delays.”</em>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TECHNOLOGY -->
-  <section id="technology" class="snap-section">
-    <div class="wrap-narrow">
-      <p class="eyebrow">4 · Technology &amp; systems</p>
-      <h2 class="title">Technology &amp; Systems</h2>
+    <!-- TECHNOLOGY -->
+    <section id="technology" class="panel">
+      <p class="panel-label">Section 4</p>
+      <h2>Technology &amp; Systems</h2>
+
       <div class="card">
-        <h3>AI / ERP consulting</h3>
+        <span class="badge badge-moving">AI / ERP consulting</span>
         <p>Finding: <em>“Business managed by experience and willpower, not a verified operating system.”</em></p>
         <p style="margin-top: 0.5rem;">Phase 1 proposal (<span class="hl">$375K</span> for <span class="hl">90 days</span>) <strong>paused</strong> — cost too high. Greg Pandolfi to implement back-office IT fixes immediately (security, server room, workstation locks). Firm vetting required before further commitment.</p>
       </div>
-      <div class="grid-2">
+
+      <div class="grid-2" style="margin-top: 1rem;">
         <div class="card">
           <h3>IT infrastructure</h3>
           <ul>
@@ -525,15 +642,14 @@
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HR -->
-  <section id="hr" class="snap-section">
-    <div class="wrap">
-      <p class="eyebrow">5 · Human resources</p>
-      <h2 class="title">Human Resources</h2>
-      <table>
+    <!-- HR -->
+    <section id="hr" class="panel">
+      <p class="panel-label">Section 5</p>
+      <h2>Human Resources</h2>
+
+      <table style="margin-bottom: 1rem;">
         <thead>
           <tr><th>Headcount target</th><th>April hires</th><th>April terminations</th><th>Cap</th></tr>
         </thead>
@@ -546,7 +662,8 @@
           </tr>
         </tbody>
       </table>
-      <div class="grid-2" style="margin-top: 1rem;">
+
+      <div class="grid-2">
         <div class="card">
           <h3>Recruiting</h3>
           <p>LinkedIn Recruiter (light) approved at <span class="hl">$170/month</span> for hard-to-fill skilled roles.</p>
@@ -556,23 +673,25 @@
           <p>Program documented with formal sign-offs and financial consequences. Trainers paid for <span class="hl">90 days</span> post-sign-off.</p>
         </div>
         <div class="card">
+          <span class="badge badge-moving">Priority</span>
           <h3>Robotics</h3>
           <p><strong>Urgent priority</strong> to reduce glue line labor strain. Expedite delivery.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LEADERSHIP -->
-  <section id="leadership" class="snap-section">
-    <div class="wrap-narrow">
-      <p class="eyebrow">6 · Leadership &amp; other</p>
-      <h2 class="title">Leadership &amp; Other</h2>
+    <!-- LEADERSHIP -->
+    <section id="leadership" class="panel">
+      <p class="panel-label">Section 6</p>
+      <h2>Leadership &amp; Other</h2>
+
       <div class="card">
-        <h3>Front office retreat — May 14</h3>
+        <span class="badge badge-next">May 14</span>
+        <h3>Front office retreat</h3>
         <p>Full-day session with facilitator <strong>Juan Bandana</strong>. Focus: faster job handoff, data accuracy, sales-to-planning communication.</p>
       </div>
-      <div class="grid-2">
+
+      <div class="grid-2" style="margin-top: 1rem;">
         <div class="card">
           <h3>Brown Summit leadership</h3>
           <p><strong>T-Mac</strong> retiring end of June. <strong>Corey Johnson</strong> to take over. Tour scheduling pushed to <span class="hl">mid-July</span> (Walt Shiels coordinating).</p>
@@ -582,16 +701,14 @@
           <p><strong>Christian</strong> surpassing April onboarding goals. <strong>Hunter</strong> prospecting Long Island territory.</p>
         </div>
       </div>
-      <p class="footer-note">Arkay Packaging · Management Meeting · May 13, 2026 · Confidential</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ACTION ITEMS -->
-  <section id="actions" class="snap-section tall">
-    <div class="wrap">
-      <p class="eyebrow">7 · Action items</p>
-      <h2 class="title">Action Items</h2>
-      <table class="actions-table">
+    <!-- ACTIONS -->
+    <section id="actions" class="panel">
+      <p class="panel-label">Section 7</p>
+      <h2>Action Items</h2>
+
+      <table>
         <thead>
           <tr><th>Owner</th><th>Action</th></tr>
         </thead>
@@ -658,47 +775,38 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
+
+      <div class="footer-ref">
+        <strong>Reference</strong>
+        Arkay Packaging · Management Meeting · May 13, 2026 · Confidential. Content from May management meeting minutes. No private contacts published.
+      </div>
+    </section>
+
+  </main>
 
   <script>
-    const sections = document.querySelectorAll(".snap-section");
-    const dots = document.querySelectorAll("nav.dots a");
-    const progressBar = document.getElementById("progressBar");
+    const tabs = document.querySelectorAll(".tab-nav a");
+    const panels = document.querySelectorAll(".panel");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
-            dots.forEach((d) => d.classList.toggle("active", d.getAttribute("href") === `#${id}`));
+            tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
           }
         });
       },
-      { threshold: 0.55 }
+      { rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 120}px 0px -55% 0px`, threshold: 0 }
     );
 
-    sections.forEach((s) => observer.observe(s));
+    panels.forEach((p) => observer.observe(p));
 
-    dots.forEach((dot) => {
-      dot.addEventListener("click", (e) => {
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelector(dot.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+        document.querySelector(tab.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
       });
-    });
-
-    window.addEventListener("scroll", () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = docHeight > 0 ? `${(window.scrollY / docHeight) * 100}%` : "0%";
-    }, { passive: true });
-
-    document.addEventListener("keydown", (e) => {
-      if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(e.key)) return;
-      e.preventDefault();
-      const idx = [...sections].findIndex((s) => s.getBoundingClientRect().top >= -window.innerHeight * 0.45);
-      const i = idx < 0 ? 0 : idx;
-      const next = e.key === "ArrowDown" || e.key === "PageDown" ? Math.min(i + 1, sections.length - 1) : Math.max(i - 1, 0);
-      sections[next].scrollIntoView({ behavior: "smooth" });
     });
   </script>
 </body>
