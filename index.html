@@ -170,7 +170,93 @@
     .card ul { margin-left: 1.15rem; }
     .card li { margin-bottom: 0.4rem; }
 
-    .hl { color: var(--primary); font-weight: 600; }
+    /* Big scannable number bubbles */
+    .hl, .num-chip {
+      display: inline-block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: linear-gradient(145deg, #e8f2ff 0%, #dce8f8 100%);
+      border: 2px solid rgba(30, 77, 140, 0.2);
+      border-radius: 999px;
+      padding: 0.15rem 0.65rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .num-chip-lg {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      padding: 0.5rem 1.1rem;
+      border-radius: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .bubble-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .bubble {
+      background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
+      border: 2px solid rgba(30, 77, 140, 0.15);
+      border-radius: 24px;
+      padding: 1.35rem 1rem 1.15rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(30, 77, 140, 0.1);
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bubble.accent-bubble {
+      background: linear-gradient(160deg, #fff8f4 0%, #ffede3 100%);
+      border-color: rgba(196, 92, 38, 0.25);
+      box-shadow: 0 4px 20px rgba(196, 92, 38, 0.12);
+    }
+
+    .bubble .bubble-num {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .bubble.accent-bubble .bubble-num { color: var(--accent); }
+
+    .bubble .bubble-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.35;
+      max-width: 12rem;
+    }
+
+    .bubble .bubble-sub {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.35rem;
+      opacity: 0.85;
+    }
+
+    .bubble-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .bubble-row-2 { grid-template-columns: 1fr; }
+    }
 
     .summary-list {
       list-style: none;
@@ -199,66 +285,85 @@
 
     .stat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.1rem;
     }
 
     .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.1rem 1.2rem;
+      background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
+      border: 2px solid rgba(30, 77, 140, 0.15);
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(30, 77, 140, 0.1);
+      padding: 1.5rem 1.25rem 1.35rem;
+      text-align: center;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .stat-card .stat-label {
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.75rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
 
     .stat-card .stat-value {
-      font-size: 1.35rem;
-      font-weight: 700;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800;
       color: var(--primary);
-      line-height: 1.2;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
     }
 
     .stat-card .stat-sub {
-      font-size: 0.82rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-top: 0.35rem;
+      margin-top: 0.45rem;
+      line-height: 1.35;
     }
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.75rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
     }
 
     .hero-stat {
-      background: var(--primary-soft);
-      border-radius: 10px;
-      padding: 1rem;
+      background: linear-gradient(160deg, #ffffff 0%, #e8f2ff 100%);
+      border-radius: 24px;
+      padding: 1.5rem 1rem;
       text-align: center;
-      border: 1px solid rgba(30, 77, 140, 0.12);
+      border: 2px solid rgba(30, 77, 140, 0.18);
+      box-shadow: 0 6px 24px rgba(30, 77, 140, 0.12);
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-stat .v {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 800;
       color: var(--primary);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
     }
 
     .hero-stat .l {
-      font-size: 0.72rem;
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-top: 0.25rem;
-      line-height: 1.3;
+      margin-top: 0.5rem;
+      line-height: 1.35;
     }
 
     .grid-2 {
@@ -387,9 +492,9 @@
       </div>
 
       <div class="hero-stats">
-        <div class="hero-stat"><div class="v">+$300K</div><div class="l">April billing vs. LY</div></div>
-        <div class="hero-stat"><div class="v">96%</div><div class="l">April OP vs. budget</div></div>
-        <div class="hero-stat"><div class="v">245</div><div class="l">Headcount (cap 250)</div></div>
+        <div class="hero-stat"><div class="v">+$300K</div><div class="l">April billing vs. last year</div></div>
+        <div class="hero-stat"><div class="v">96%</div><div class="l">April operating profit vs. budget</div></div>
+        <div class="hero-stat"><div class="v">245</div><div class="l">Headcount · cap 250</div></div>
         <div class="hero-stat"><div class="v">8 wk</div><div class="l">Factory backlog</div></div>
       </div>
     </section>
@@ -410,14 +515,24 @@
           <div class="stat-sub">of April budget · 86% YTD (up from 78%)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Cartons shipped / accepted</div>
+          <div class="stat-label">Cartons shipped (April)</div>
           <div class="stat-value">27.5M</div>
-          <div class="stat-sub">99.9% acceptance · 92M YTD · 99.98%</div>
+          <div class="stat-sub">99.9% accepted</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Customer complaints / do-overs</div>
+          <div class="stat-label">Cartons shipped (YTD)</div>
+          <div class="stat-value">92M</div>
+          <div class="stat-sub">99.98% accepted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Complaints (April)</div>
           <div class="stat-value">6</div>
-          <div class="stat-sub">5 valid · YTD: 3 do-overs · 36,095 cartons · $14,590</div>
+          <div class="stat-sub">5 valid</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Do-overs (YTD)</div>
+          <div class="stat-value">3</div>
+          <div class="stat-sub">36,095 cartons · $14,590</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Headcount</div>
@@ -431,6 +546,13 @@
     <section id="customers" class="panel">
       <p class="panel-label">Section 1</p>
       <h2>Customers &amp; Business Development</h2>
+
+      <div class="bubble-grid" style="margin-bottom: 1.25rem;">
+        <div class="bubble"><div class="bubble-num">9M+</div><div class="bubble-label">Revlon cartons</div></div>
+        <div class="bubble"><div class="bubble-num">$1.2M</div><div class="bubble-label">Revlon sales</div></div>
+        <div class="bubble"><div class="bubble-num">$5M</div><div class="bubble-label">Revlon OG opp</div></div>
+        <div class="bubble"><div class="bubble-num">5M/mo</div><div class="bubble-label">Femcare capacity</div></div>
+      </div>
 
       <div class="grid-2">
         <div class="card update-card">
@@ -540,17 +662,24 @@
         </div>
       </div>
 
-      <div class="stat-grid" style="margin-top: 1rem;">
-        <div class="stat-card">
-          <div class="stat-label">May billing target</div>
-          <div class="stat-value">$7.5M</div>
-          <div class="stat-sub">Stretch goal: $8M</div>
+      <div class="bubble-row-2">
+        <div class="bubble accent-bubble">
+          <div class="bubble-num">$7.5M</div>
+          <div class="bubble-label">May billing target</div>
+          <div class="bubble-sub">Stretch: $8M</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">May pay-period benefit</div>
-          <div class="stat-value">$350–400K</div>
-          <div class="stat-sub">4 pay periods vs. 5 in April</div>
+        <div class="bubble accent-bubble">
+          <div class="bubble-num">$350–400K</div>
+          <div class="bubble-label">May bottom-line benefit vs. April</div>
+          <div class="bubble-sub">4 pay periods (vs. 5)</div>
         </div>
+      </div>
+
+      <div class="bubble-grid" style="margin-top: 1rem;">
+        <div class="bubble"><div class="bubble-num">+$100K</div><div class="bubble-label">April overtime</div><div class="bubble-sub">$60K/wk vs $30K</div></div>
+        <div class="bubble"><div class="bubble-num">$50K</div><div class="bubble-label">Unexpected repairs</div></div>
+        <div class="bubble"><div class="bubble-num">+$67K</div><div class="bubble-label">Freight (diesel)</div></div>
+        <div class="bubble"><div class="bubble-num">+8.2%</div><div class="bubble-label">Billings YTD</div></div>
       </div>
     </section>
 
@@ -559,9 +688,15 @@
       <p class="panel-label">Section 3</p>
       <h2>Operations &amp; Manufacturing</h2>
 
+      <div class="bubble-grid" style="margin-bottom: 1rem;">
+        <div class="bubble accent-bubble"><div class="bubble-num">8 wk</div><div class="bubble-label">Backlog</div></div>
+        <div class="bubble accent-bubble"><div class="bubble-num">$60K</div><div class="bubble-label">Overtime / week</div></div>
+        <div class="bubble accent-bubble"><div class="bubble-num">5M</div><div class="bubble-label">Max cartons / month (3-shift)</div></div>
+      </div>
+
       <div class="card">
         <span class="badge badge-moving">Capacity</span>
-        <p>Factory <strong>fully sold</strong>. <span class="hl">8-week</span> backlog. Overtime at <span class="hl">$60K/week</span>. Strategy: reduce make-ready time vs. adding headcount. Max 3-shift theoretical capacity: ~<span class="hl">5M cartons/month</span>.</p>
+        <p>Factory <strong>fully sold</strong>. Strategy: reduce make-ready time vs. adding headcount.</p>
       </div>
 
       <div class="grid-2" style="margin-top: 1rem;">
@@ -619,10 +754,15 @@
       <p class="panel-label">Section 4</p>
       <h2>Technology &amp; Systems</h2>
 
+      <div class="bubble-row-2" style="margin-bottom: 1rem;">
+        <div class="bubble accent-bubble"><div class="bubble-num">$375K</div><div class="bubble-label">AI Phase 1 proposal</div><div class="bubble-sub">PAUSED</div></div>
+        <div class="bubble accent-bubble"><div class="bubble-num">90</div><div class="bubble-label">Days (Phase 1 scope)</div></div>
+      </div>
+
       <div class="card">
         <span class="badge badge-moving">AI / ERP consulting</span>
         <p>Finding: <em>“Business managed by experience and willpower, not a verified operating system.”</em></p>
-        <p style="margin-top: 0.5rem;">Phase 1 proposal (<span class="hl">$375K</span> for <span class="hl">90 days</span>) <strong>paused</strong> — cost too high. Greg Pandolfi to implement back-office IT fixes immediately (security, server room, workstation locks). Firm vetting required before further commitment.</p>
+        <p style="margin-top: 0.5rem;">Phase 1 proposal <strong>paused</strong> — cost too high. Greg Pandolfi to implement back-office IT fixes immediately (security, server room, workstation locks). Firm vetting required before further commitment.</p>
       </div>
 
       <div class="grid-2" style="margin-top: 1rem;">
@@ -649,19 +789,12 @@
       <p class="panel-label">Section 5</p>
       <h2>Human Resources</h2>
 
-      <table style="margin-bottom: 1rem;">
-        <thead>
-          <tr><th>Headcount target</th><th>April hires</th><th>April terminations</th><th>Cap</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>245</strong></td>
-            <td>26 (from 37 interviews)</td>
-            <td>17 (incl. 7 no-shows)</td>
-            <td><strong>250 max</strong></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="bubble-grid" style="margin-bottom: 1rem;">
+        <div class="bubble"><div class="bubble-num">245</div><div class="bubble-label">Headcount</div><div class="bubble-sub">Cap 250</div></div>
+        <div class="bubble"><div class="bubble-num">26</div><div class="bubble-label">April hires</div><div class="bubble-sub">37 interviews</div></div>
+        <div class="bubble"><div class="bubble-num">17</div><div class="bubble-label">April terminations</div><div class="bubble-sub">7 no-shows</div></div>
+        <div class="bubble accent-bubble"><div class="bubble-num">$170</div><div class="bubble-label">LinkedIn Recruiter</div><div class="bubble-sub">per month</div></div>
+      </div>
 
       <div class="grid-2">
         <div class="card">
