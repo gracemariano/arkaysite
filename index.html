@@ -16,18 +16,18 @@
       --done: #d1fae5; --done-text: #065f46;
       --next: #dbeafe; --next-text: #1e40af;
       --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.04);
-      --radius: 12px; --cover-h: clamp(58px, 8vw, 96px); --header-h: calc(var(--cover-h) + 6rem);
+      --radius: 12px; --header-h: 12rem;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+    html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
     body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
     .site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
-    .cover-wrap{max-width:1100px;margin:0 auto;padding:.4rem 1.25rem 0}
-    .cover-link{display:block;width:100%;line-height:0;overflow:hidden;border-radius:8px;transition:opacity .2s}
+    .cover-wrap{max-width:1100px;margin:0 auto;padding:.35rem 1.25rem 0}
+    .cover-link{display:block;width:100%;line-height:0;border-radius:8px;transition:opacity .2s;max-height:clamp(72px,12vw,118px)}
     .cover-link:hover{opacity:.92}
     .cover-link:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
-    .site-cover{width:100%;height:var(--cover-h);object-fit:cover;object-position:center center;display:block}
-    .header-inner{max-width:1100px;margin:0 auto;padding:.55rem 1.25rem .5rem}
+    .site-cover{width:100%;height:auto;max-height:clamp(72px,12vw,118px);display:block;object-fit:contain;object-position:left center}
+    .header-inner{max-width:1100px;margin:0 auto;padding:.5rem 1.25rem .45rem}
     .header-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.55rem}
     .brand{font-size:1rem;font-weight:700;color:var(--primary);letter-spacing:-.02em}
     .date-pill{font-size:.78rem;font-weight:600;color:#fff;background:var(--primary);padding:.35rem .85rem;border-radius:999px}
@@ -39,19 +39,14 @@
     .tab-nav a.archive{border:1px dashed var(--border)}
     main{max-width:1100px;margin:0 auto;padding:0 1.25rem 2rem}
     .panel{
-      min-height:calc(100dvh - var(--header-h));
-      scroll-snap-align:start;
-      scroll-snap-stop:always;
+      scroll-margin-top:var(--header-h);
       margin-bottom:0;
-      padding:1.5rem 0 2rem;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      padding:1rem 0 2.5rem;
     }
-    .panel.tall,.panel.panel-first{justify-content:flex-start;padding-top:.65rem}
-    .panel.panel-first .meeting-title{margin-bottom:.15rem}
-    .panel.panel-first .meeting-date{margin-bottom:.65rem}
-    .panel.panel-first h2{font-size:1.25rem;margin-bottom:.65rem}
+    .panel.panel-first{padding-top:.25rem}
+    .panel.panel-first .meeting-title{margin-bottom:.2rem}
+    .panel.panel-first .meeting-date{margin-bottom:.75rem}
+    .panel.panel-first h2{font-size:1.25rem;margin-bottom:.75rem}
     .panel-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
     .panel h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.02em}
     .meeting-title{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:800;color:var(--primary);margin-bottom:.25rem;letter-spacing:-.02em}
@@ -84,10 +79,8 @@
     th{background:var(--surface-muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
     tr:last-child td{border-bottom:none}
     .meeting-divider{
-      min-height:calc(100dvh - var(--header-h));
-      scroll-snap-align:start;
-      scroll-snap-stop:always;
-      margin:0;
+      scroll-margin-top:var(--header-h);
+      margin:1.5rem 0;
       padding:2rem 1.5rem;
       background:var(--surface);
       border:2px solid var(--primary);
@@ -103,8 +96,7 @@
     .meeting-divider a{display:inline-block;font-size:.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:.5rem 1rem;border:1px solid var(--primary);border-radius:999px}
     .meeting-divider a:hover{background:var(--primary);color:#fff}
     .footer-ref{margin-top:2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--text-muted)}
-    .scroll-hint{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);animation:fadeHint 2s ease-in-out infinite}
-    @keyframes fadeHint{0%,100%{opacity:.35}50%{opacity:1}}
+    .scroll-hint{display:none}
     nav.snap-dots{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:.4rem}
     nav.snap-dots a{width:8px;height:8px;border-radius:50%;background:rgba(30,77,140,.2);border:1px solid rgba(30,77,140,.35);transition:transform .2s,background .2s}
     nav.snap-dots a:hover,nav.snap-dots a.active{background:var(--primary);transform:scale(1.35)}
@@ -114,9 +106,7 @@
     @media print {
       .tab-nav, nav.snap-dots { display: none; }
       .site-header { position: static; }
-      html { scroll-snap-type: none; }
-      .panel, .meeting-divider { scroll-snap-align: none; scroll-snap-stop: normal; min-height: auto; }
-      .scroll-hint { display: none; }
+      .panel, .meeting-divider { min-height: auto; }
     }
   </style>
 </head>
@@ -164,7 +154,7 @@
 <main>
 
 <!-- ═══ JUNE 17, 2026 ═══ -->
-<section id="june-summary" class="panel panel-first tall" style="position:relative">
+<section id="june-summary" class="panel panel-first">
   <p class="panel-label">Latest · June 2026</p>
   <h2 class="meeting-title">June Management Meeting Notes</h2>
   <p class="meeting-date">Meeting date: June 17, 2026</p>
@@ -187,10 +177,9 @@
     <div class="bubble accent"><div class="bubble-num">0</div><div class="bubble-label">May rejections</div><div class="bubble-sub">26.5M cartons</div></div>
     <div class="bubble"><div class="bubble-num">450M</div><div class="bubble-label">Max capacity / yr</div><div class="bubble-sub">~$130M sales</div></div>
   </div>
-  <p class="scroll-hint">Scroll ↓ — each section stops</p>
 </section>
 
-<section id="june-metrics" class="panel tall">
+<section id="june-metrics" class="panel">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>May Performance Metrics</h2>
   <div class="bubble-grid">
@@ -288,7 +277,7 @@
   </div>
 </section>
 
-<section id="june-customers" class="panel tall">
+<section id="june-customers" class="panel">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>Customers &amp; New Business</h2>
   <div class="grid-2">
@@ -327,7 +316,7 @@
   </div>
 </section>
 
-<section id="june-actions" class="panel tall">
+<section id="june-actions" class="panel">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>June Action Items</h2>
   <table>
@@ -389,7 +378,7 @@
   </div>
 </section>
 
-<section id="may-customers" class="panel tall">
+<section id="may-customers" class="panel">
   <p class="panel-label">May Management Meeting Notes</p>
   <h2>Customers &amp; Business Development</h2>
   <div class="bubble-grid" style="margin-bottom:1rem">
@@ -427,7 +416,7 @@
   <div class="callout" style="margin-top:1rem"><strong>Policy:</strong> Do NOT tell customers we are busy — use only <em>"manufacturing delays."</em></div>
 </section>
 
-<section id="may-actions" class="panel tall">
+<section id="may-actions" class="panel">
   <p class="panel-label">May Management Meeting Notes</p>
   <h2>May Action Items</h2>
   <table>
@@ -452,10 +441,14 @@
 <script>
   function syncHeaderHeight() {
     const header = document.querySelector(".site-header");
-    if (header) document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    if (header) {
+      const h = header.offsetHeight + "px";
+      document.documentElement.style.setProperty("--header-h", h);
+    }
   }
   syncHeaderHeight();
   window.addEventListener("resize", syncHeaderHeight);
+  document.querySelector(".site-cover")?.addEventListener("load", syncHeaderHeight);
 
   const tabs = document.querySelectorAll(".tab-nav a");
   const dots = document.querySelectorAll("nav.snap-dots a");
@@ -470,14 +463,14 @@
     entries.forEach((entry) => {
       if (entry.isIntersecting) setActive(entry.target.id);
     });
-  }, { rootMargin: "-140px 0px -50% 0px", threshold: 0 });
+  }, { rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue("--header-h").trim() || "12rem"} 0px -55% 0px`, threshold: 0 });
 
   panels.forEach((p) => observer.observe(p));
 
   [...tabs, ...dots].forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      document.querySelector(link.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(link.getAttribute("href"))?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
@@ -485,10 +478,11 @@
     if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(e.key)) return;
     e.preventDefault();
     const list = [...panels];
-    const idx = list.findIndex((p) => p.getBoundingClientRect().top >= -window.innerHeight * 0.4);
+    const headerOffset = document.querySelector(".site-header")?.offsetHeight || 0;
+    const idx = list.findIndex((p) => p.getBoundingClientRect().top >= headerOffset - 20);
     const i = idx < 0 ? 0 : idx;
     const next = e.key === "ArrowDown" || e.key === "PageDown" ? Math.min(i + 1, list.length - 1) : Math.max(i - 1, 0);
-    list[next].scrollIntoView({ behavior: "smooth" });
+    list[next].scrollIntoView({ behavior: "smooth", block: "start" });
   });
 </script>
 </body>
