@@ -3,944 +3,399 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arkay May Management Meeting — May 13, 2026</title>
+  <title>Arkay Management Meeting Notes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #eef1f6;
-      --surface: #ffffff;
-      --surface-muted: #f8f9fb;
-      --text: #1a2332;
-      --text-muted: #5c6b7f;
-      --border: #e2e8f0;
-      --primary: #1e4d8c;
-      --primary-soft: #e8f0fa;
-      --accent: #c45c26;
-      --moving: #fef3c7;
-      --moving-text: #92400e;
-      --done: #d1fae5;
-      --done-text: #065f46;
-      --next: #dbeafe;
-      --next-text: #1e40af;
-      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
-      --radius: 12px;
-      --header-h: 7.5rem;
+      --bg: #eef1f6; --surface: #fff; --surface-muted: #f8f9fb;
+      --text: #1a2332; --text-muted: #5c6b7f; --border: #e2e8f0;
+      --primary: #1e4d8c; --accent: #c45c26;
+      --moving: #fef3c7; --moving-text: #92400e;
+      --done: #d1fae5; --done-text: #065f46;
+      --next: #dbeafe; --next-text: #1e40af;
+      --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.04);
+      --radius: 12px; --header-h: 8rem;
     }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem 1.25rem 0.75rem;
-    }
-
-    .brand-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .brand {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-
-    .date-pill {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: var(--surface-muted);
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-    }
-
-    .tab-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      padding-bottom: 0.25rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .tab-nav a {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.45rem 0.85rem;
-      border-radius: 999px;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .tab-nav a:hover { background: var(--surface-muted); color: var(--text); }
-
-    .tab-nav a.active {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.5rem 1.25rem 4rem;
-    }
-
-    .panel {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      margin-bottom: 2.5rem;
-      padding-top: 0.5rem;
-    }
-
-    .panel-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .panel h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.25rem 1.35rem;
-      margin-bottom: 1rem;
-    }
-
-    .card:last-child { margin-bottom: 0; }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-    }
-
-    .card h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin: 1rem 0 0.5rem;
-    }
-
-    .card p, .card li { color: var(--text); font-size: 0.92rem; }
-    .card ul { margin-left: 1.15rem; }
-    .card li { margin-bottom: 0.4rem; }
-
-    /* Big scannable number bubbles */
-    .hl, .num-chip {
-      display: inline-block;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--primary);
-      background: linear-gradient(145deg, #e8f2ff 0%, #dce8f8 100%);
-      border: 2px solid rgba(30, 77, 140, 0.2);
-      border-radius: 999px;
-      padding: 0.15rem 0.65rem;
-      line-height: 1.35;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-
-    .num-chip-lg {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      padding: 0.5rem 1.1rem;
-      border-radius: 20px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .bubble-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .bubble {
-      background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
-      border: 2px solid rgba(30, 77, 140, 0.15);
-      border-radius: 24px;
-      padding: 1.35rem 1rem 1.15rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(30, 77, 140, 0.1);
-      min-height: 130px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .bubble.accent-bubble {
-      background: linear-gradient(160deg, #fff8f4 0%, #ffede3 100%);
-      border-color: rgba(196, 92, 38, 0.25);
-      box-shadow: 0 4px 20px rgba(196, 92, 38, 0.12);
-    }
-
-    .bubble .bubble-num {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .bubble.accent-bubble .bubble-num { color: var(--accent); }
-
-    .bubble .bubble-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-      line-height: 1.35;
-      max-width: 12rem;
-    }
-
-    .bubble .bubble-sub {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-top: 0.35rem;
-      opacity: 0.85;
-    }
-
-    .bubble-row-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 480px) {
-      .bubble-row-2 { grid-template-columns: 1fr; }
-    }
-
-    .summary-list {
-      list-style: none;
-      margin: 0;
-    }
-
-    .summary-list li {
-      position: relative;
-      padding: 0.55rem 0 0.55rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-
-    .summary-list li:last-child { border-bottom: none; }
-
-    .summary-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.95rem;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.1rem;
-    }
-
-    .stat-card {
-      background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
-      border: 2px solid rgba(30, 77, 140, 0.15);
-      border-radius: 24px;
-      box-shadow: 0 4px 20px rgba(30, 77, 140, 0.1);
-      padding: 1.5rem 1.25rem 1.35rem;
-      text-align: center;
-      min-height: 150px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .stat-card .stat-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .stat-card .stat-value {
-      font-size: clamp(2.25rem, 5vw, 3.5rem);
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .stat-card .stat-sub {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 0.45rem;
-      line-height: 1.35;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .hero-stat {
-      background: linear-gradient(160deg, #ffffff 0%, #e8f2ff 100%);
-      border-radius: 24px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      border: 2px solid rgba(30, 77, 140, 0.18);
-      box-shadow: 0 6px 24px rgba(30, 77, 140, 0.12);
-      min-height: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-stat .v {
-      font-size: clamp(2.25rem, 5vw, 3.25rem);
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-    }
-
-    .hero-stat .l {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-      line-height: 1.35;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .update-card {
-      position: relative;
-      padding-top: 0.25rem;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-      margin-bottom: 0.65rem;
-    }
-
-    .badge-section { background: var(--surface-muted); color: var(--text-muted); }
-    .badge-moving { background: var(--moving); color: var(--moving-text); }
-    .badge-done { background: var(--done); color: var(--done-text); }
-    .badge-next { background: var(--next); color: var(--next-text); }
-
-    .callout {
-      background: var(--surface-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 10px 10px 0;
-      padding: 1rem 1.15rem;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
-
-  .callout strong { color: var(--text); }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      background: var(--surface);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    th, td {
-      text-align: left;
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-
-    th {
-      background: var(--surface-muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-    }
-
-    tr:last-child td { border-bottom: none; }
-
-    .footer-ref {
-      margin-top: 2rem;
-      padding: 1rem 1.15rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .footer-ref strong { color: var(--text); display: block; margin-bottom: 0.35rem; }
-
-    @media (max-width: 640px) {
-      .brand { font-size: 1rem; }
-      .tab-nav a { font-size: 0.72rem; padding: 0.4rem 0.65rem; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+    body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+    .site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+    .header-inner{max-width:1100px;margin:0 auto;padding:1rem 1.25rem .75rem}
+    .brand-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.85rem}
+    .brand{font-size:1.15rem;font-weight:700;color:var(--primary);letter-spacing:-.02em}
+    .date-pill{font-size:.78rem;font-weight:600;color:#fff;background:var(--primary);padding:.35rem .85rem;border-radius:999px}
+    .date-pill.muted{background:var(--surface-muted);color:var(--text-muted);border:1px solid var(--border)}
+    .tab-nav{display:flex;flex-wrap:wrap;gap:.35rem;padding-bottom:.25rem;overflow-x:auto}
+    .tab-nav a{font-size:.76rem;font-weight:600;color:var(--text-muted);text-decoration:none;padding:.45rem .8rem;border-radius:999px;white-space:nowrap}
+    .tab-nav a:hover{background:var(--surface-muted);color:var(--text)}
+    .tab-nav a.active{background:var(--primary);color:#fff}
+    .tab-nav a.archive{border:1px dashed var(--border)}
+    main{max-width:1100px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+    .panel{scroll-snap-align:start;scroll-snap-stop:always;margin-bottom:2.5rem;padding-top:.5rem}
+    .panel-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
+    .panel h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.02em}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.25rem 1.35rem;margin-bottom:1rem}
+    .card h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+    .card p,.card li{font-size:.92rem}
+    .card ul{margin-left:1.15rem}.card li{margin-bottom:.4rem}
+    .hl{display:inline-block;font-size:1.05rem;font-weight:800;color:var(--primary);background:linear-gradient(145deg,#e8f2ff,#dce8f8);border:2px solid rgba(30,77,140,.2);border-radius:999px;padding:.12rem .6rem;white-space:nowrap}
+    .bubble-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1rem 0}
+    .bubble{background:linear-gradient(160deg,#fff,#f0f6ff);border:2px solid rgba(30,77,140,.15);border-radius:24px;padding:1.35rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(30,77,140,.1);min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .bubble.accent{background:linear-gradient(160deg,#fff8f4,#ffede3);border-color:rgba(196,92,38,.25);box-shadow:0 4px 20px rgba(196,92,38,.12)}
+    .bubble.warn{background:linear-gradient(160deg,#fffbeb,#fef3c7);border-color:rgba(180,83,9,.25)}
+    .bubble .bubble-num{font-size:clamp(1.85rem,4.5vw,3rem);font-weight:800;color:var(--primary);line-height:1.05;letter-spacing:-.04em}
+    .bubble.accent .bubble-num,.bubble.warn .bubble-num{color:var(--accent)}
+    .bubble .bubble-label{font-size:.78rem;font-weight:600;color:var(--text-muted);margin-top:.5rem;line-height:1.35}
+    .bubble .bubble-sub{font-size:.88rem;font-weight:700;color:var(--primary);margin-top:.3rem;opacity:.85}
+    .summary-list{list-style:none}.summary-list li{position:relative;padding:.55rem 0 .55rem 1.25rem;border-bottom:1px solid var(--border);font-size:.92rem}
+    .summary-list li:last-child{border-bottom:none}
+    .summary-list li::before{content:"";position:absolute;left:0;top:.95rem;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+    .badge{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.2rem .55rem;border-radius:6px;margin-bottom:.65rem}
+    .badge-moving{background:var(--moving);color:var(--moving-text)}
+    .badge-done{background:var(--done);color:var(--done-text)}
+    .badge-next{background:var(--next);color:var(--next-text)}
+    .badge-section{background:var(--surface-muted);color:var(--text-muted)}
+    .callout{background:var(--surface-muted);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:1rem 1.15rem;margin-top:1rem;font-size:.9rem}
+    table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)}
+    th,td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--border);vertical-align:top}
+    th{background:var(--surface-muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
+    tr:last-child td{border-bottom:none}
+    .meeting-divider{margin:3.5rem 0 2.5rem;padding:2rem 1.5rem;background:var(--surface);border:2px solid var(--primary);border-radius:var(--radius);text-align:center;scroll-snap-align:start}
+    .meeting-divider h2{font-size:1.35rem;color:var(--primary);margin-bottom:.35rem}
+    .meeting-divider p{color:var(--text-muted);font-size:.9rem;margin-bottom:1rem}
+    .meeting-divider a{display:inline-block;font-size:.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:.5rem 1rem;border:1px solid var(--primary);border-radius:999px}
+    .meeting-divider a:hover{background:var(--primary);color:#fff}
+    .footer-ref{margin-top:2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--text-muted)}
+    @media(max-width:640px){.brand{font-size:1rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}}
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand-row">
-        <div class="brand">Arkay Management Meeting Notes</div>
-        <span class="date-pill">May 13, 2026</span>
-      </div>
-      <nav class="tab-nav" aria-label="Sections">
-        <a href="#summary" class="active">Summary</a>
-        <a href="#metrics">Metrics</a>
-        <a href="#customers">Customers</a>
-        <a href="#financial">Financial</a>
-        <a href="#operations">Operations</a>
-        <a href="#technology">Technology</a>
-        <a href="#hr">HR</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#actions">Actions</a>
-      </nav>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand">Arkay Management Meeting Notes</div>
+      <span class="date-pill">June 17, 2026 · Latest</span>
     </div>
-  </header>
+    <nav class="tab-nav" aria-label="Sections">
+      <a href="#june-summary" class="active">Summary</a>
+      <a href="#june-metrics">Metrics</a>
+      <a href="#june-financial">Financial</a>
+      <a href="#june-capacity">Capacity</a>
+      <a href="#june-quality">Quality</a>
+      <a href="#june-automation">Automation</a>
+      <a href="#june-customers">Customers</a>
+      <a href="#june-hr">HR</a>
+      <a href="#june-actions">Actions</a>
+      <a href="#may-archive" class="archive">May '26 ↓</a>
+    </nav>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <!-- SUMMARY -->
-    <section id="summary" class="panel">
-      <p class="panel-label">Meeting overview</p>
-      <h2>Meeting Summary</h2>
+<!-- ═══ JUNE 17, 2026 ═══ -->
+<section id="june-summary" class="panel">
+  <p class="panel-label">June 17, 2026 · Latest meeting</p>
+  <h2>Meeting Summary</h2>
+  <div class="card">
+    <ul class="summary-list">
+      <li><strong>Staffing is #1 constraint</strong> — headcount <span class="hl">238–239</span> vs. target <span class="hl">275+</span>; factory at ~<span class="hl">60%</span> of realistic capacity.</li>
+      <li>Billings <span class="hl">+4%</span> YoY; bookings up nearly <span class="hl">$10M</span> — strong sales, timing mismatch on revenue.</li>
+      <li>Overtime at <span class="hl">$60K/wk</span> (+<span class="hl">$76K</span> in May); YTD OT already exceeds all of 2025.</li>
+      <li>May quality: <span class="hl">26.5M</span> cartons shipped, <span class="hl">0</span> rejections, <span class="hl">100%</span> acceptance on 895 deliveries.</li>
+      <li>Estée Lauder <span class="hl">6-month</span> inventory terms unsustainable — <span class="hl">$370K</span> liability; renegotiate to <span class="hl">90 days</span>.</li>
+      <li>Mandatory PDF workflow + Global Vision scanner (<span class="hl">$39K</span> + <span class="hl">$16K/yr</span>); monthly bonus program launches <span class="hl">Aug 1</span>.</li>
+    </ul>
+  </div>
+  <div class="bubble-grid">
+    <div class="bubble accent"><div class="bubble-num">239</div><div class="bubble-label">Headcount now</div><div class="bubble-sub">Target 275+</div></div>
+    <div class="bubble warn"><div class="bubble-num">$60K</div><div class="bubble-label">Overtime / week</div></div>
+    <div class="bubble"><div class="bubble-num">+4%</div><div class="bubble-label">Billings YoY</div></div>
+    <div class="bubble"><div class="bubble-num">+$10M</div><div class="bubble-label">Bookings increase</div></div>
+    <div class="bubble accent"><div class="bubble-num">0</div><div class="bubble-label">May rejections</div><div class="bubble-sub">26.5M cartons</div></div>
+    <div class="bubble"><div class="bubble-num">450M</div><div class="bubble-label">Max capacity / yr</div><div class="bubble-sub">~$130M sales</div></div>
+  </div>
+</section>
 
-      <div class="card">
-        <ul class="summary-list">
-          <li>April billing <span class="hl">+$300K</span> vs. last year; billings <span class="hl">+8.2%</span> YTD; bookings <span class="hl">+$6.5M</span> vs. LY.</li>
-          <li>Operating profit at <span class="hl">96%</span> of April budget; YTD <span class="hl">86%</span> of target (up from <span class="hl">78%</span>).</li>
-          <li>Factory fully sold — <span class="hl">8-week</span> backlog; overtime <span class="hl">$60K/week</span>; headcount <span class="hl">245</span> (cap <span class="hl">250</span>).</li>
-          <li>May billing target <span class="hl">$7.5M</span> (stretch <span class="hl">$8M</span>); four pay periods = ~<span class="hl">$350–400K</span> bottom-line benefit vs. April.</li>
-          <li>AI/ERP Phase 1 (<span class="hl">$375K</span> / <span class="hl">90 days</span>) paused; back-office IT fixes proceeding immediately.</li>
-          <li>Selective pricing increases <span class="hl">5–7%</span>; board price locked until <span class="hl">Nov 2026</span>.</li>
-        </ul>
-      </div>
+<section id="june-metrics" class="panel">
+  <p class="panel-label">Key numbers · June review</p>
+  <h2>May Performance Metrics</h2>
+  <div class="bubble-grid">
+    <div class="bubble"><div class="bubble-num">26.5M</div><div class="bubble-label">Cartons shipped (May)</div><div class="bubble-sub">895 deliveries</div></div>
+    <div class="bubble accent"><div class="bubble-num">100%</div><div class="bubble-label">Acceptance rate</div></div>
+    <div class="bubble"><div class="bubble-num">4</div><div class="bubble-label">Complaints (May)</div><div class="bubble-sub">3 validated</div></div>
+    <div class="bubble"><div class="bubble-num">250M</div><div class="bubble-label">Current output / yr</div></div>
+    <div class="bubble warn"><div class="bubble-num">26%</div><div class="bubble-label">P&amp;G share (May)</div><div class="bubble-sub">Was 55% in Jan</div></div>
+    <div class="bubble warn"><div class="bubble-num">$773K</div><div class="bubble-label">Billings vs. target</div><div class="bubble-sub">Clinique promo timing</div></div>
+    <div class="bubble"><div class="bubble-num">$45K</div><div class="bubble-label">Inventory recovered</div><div class="bubble-sub">Cold foil barcode</div></div>
+    <div class="bubble"><div class="bubble-num">36,095</div><div class="bubble-label">Do-overs YTD</div><div class="bubble-sub">$14,590 cost</div></div>
+  </div>
+</section>
 
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="v">+$300K</div><div class="l">April billing vs. last year</div></div>
-        <div class="hero-stat"><div class="v">96%</div><div class="l">April operating profit vs. budget</div></div>
-        <div class="hero-stat"><div class="v">245</div><div class="l">Headcount · cap 250</div></div>
-        <div class="hero-stat"><div class="v">8 wk</div><div class="l">Factory backlog</div></div>
-      </div>
-    </section>
+<section id="june-financial" class="panel">
+  <p class="panel-label">Financial &amp; sales</p>
+  <h2>Financial Performance</h2>
+  <div class="grid-2">
+    <div class="card"><span class="badge badge-done">Positives</span>
+      <ul>
+        <li>Billings <span class="hl">+4%</span> YoY; bookings <span class="hl">+$10M</span></li>
+        <li>Nestle: lower billings, higher bookings (timing)</li>
+        <li>Inventory build target: <span class="hl">6 mo → 3 mo</span> for P&amp;G</li>
+      </ul>
+    </div>
+    <div class="card"><span class="badge badge-moving">Pressures</span>
+      <ul>
+        <li>Overtime <span class="hl">+$76K</span> in May; Brian Gordy targeting <span class="hl">$40K/wk</span> (from $60K)</li>
+        <li>Repairs above LY — Heidelberg presses, roller catch-up</li>
+        <li>Freight elevated (fuel / geopolitical)</li>
+        <li>Estée Lauder billings <span class="hl">$1.9M</span> behind YTD; bookings <span class="hl">$800K</span> behind</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>P&amp;G volume leverage:</strong> Maintain P&amp;G at <span class="hl">&gt;40%</span> of sales for overhead recovery. Share fell <span class="hl">55% → 26%</span> (Jan–May); Clinique Holiday promo (50% PD) hit May profitability.</div>
+</section>
 
-    <!-- METRICS -->
-    <section id="metrics" class="panel">
-      <p class="panel-label">Key metrics</p>
-      <h2>April &amp; Year-to-Date</h2>
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-label">Billing vs. LY</div>
-          <div class="stat-value">+$300K</div>
-          <div class="stat-sub">Billings +8.2% YTD</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Operating profit vs. target</div>
-          <div class="stat-value">96%</div>
-          <div class="stat-sub">of April budget · 86% YTD (up from 78%)</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Cartons shipped (April)</div>
-          <div class="stat-value">27.5M</div>
-          <div class="stat-sub">99.9% accepted</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Cartons shipped (YTD)</div>
-          <div class="stat-value">92M</div>
-          <div class="stat-sub">99.98% accepted</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Complaints (April)</div>
-          <div class="stat-value">6</div>
-          <div class="stat-sub">5 valid</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Do-overs (YTD)</div>
-          <div class="stat-value">3</div>
-          <div class="stat-sub">36,095 cartons · $14,590</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Headcount</div>
-          <div class="stat-value">245</div>
-          <div class="stat-sub">Cap: 250 · Bookings +$6.5M vs. LY</div>
-        </div>
-      </div>
-    </section>
+<section id="june-capacity" class="panel">
+  <p class="panel-label">Operations</p>
+  <h2>Capacity &amp; Staffing</h2>
+  <div class="bubble-grid">
+    <div class="bubble accent"><div class="bubble-num">~60%</div><div class="bubble-label">Capacity in use</div><div class="bubble-sub">Staffing bottleneck</div></div>
+    <div class="bubble"><div class="bubble-num">570M</div><div class="bubble-label">Theoretical max</div></div>
+    <div class="bubble"><div class="bubble-num">450M</div><div class="bubble-label">Realistic max / yr</div><div class="bubble-sub">~$128–130M revenue</div></div>
+    <div class="bubble warn"><div class="bubble-num">275</div><div class="bubble-label">Peak headcount</div><div class="bubble-sub">Now 238–239</div></div>
+  </div>
+  <div class="card" style="margin-top:1rem">
+    <ul>
+      <li>Some presses on <strong>2 shifts only</strong> — lost time from stop/start cycles</li>
+      <li>Need full 1st &amp; 2nd shift staffing; expand 3rd where possible</li>
+      <li>Summer sprint — Ryan example: all-hands press coverage during vacations</li>
+      <li>Canon press proofs <strong>moratorium until Aug 1</strong> — focus on confirmed business</li>
+    </ul>
+  </div>
+</section>
 
-    <!-- CUSTOMERS -->
-    <section id="customers" class="panel">
-      <p class="panel-label">Section 1</p>
-      <h2>Customers &amp; Business Development</h2>
+<section id="june-quality" class="panel">
+  <p class="panel-label">Quality</p>
+  <h2>Quality Control</h2>
+  <div class="bubble-grid">
+    <div class="bubble accent"><div class="bubble-num">0</div><div class="bubble-label">Rejections (May)</div></div>
+    <div class="bubble"><div class="bubble-num">26.5M</div><div class="bubble-label">Cartons shipped</div></div>
+    <div class="bubble warn"><div class="bubble-num">2,500</div><div class="bubble-label">Rejections LY (May)</div><div class="bubble-sub">29M cartons</div></div>
+  </div>
+  <div class="card" style="margin-top:1rem">
+    <p><strong>May complaints (4):</strong> P&amp;G bent flaps, Clinique skewed lineup, Japan damaged tuck flaps — 3 validated. Cold foil barcode rollout successful; found <span class="hl">$45K</span> recoverable inventory.</p>
+  </div>
+</section>
 
-      <div class="bubble-grid" style="margin-bottom: 1.25rem;">
-        <div class="bubble"><div class="bubble-num">9M+</div><div class="bubble-label">Revlon cartons</div></div>
-        <div class="bubble"><div class="bubble-num">$1.2M</div><div class="bubble-label">Revlon sales</div></div>
-        <div class="bubble"><div class="bubble-num">$5M</div><div class="bubble-label">Revlon OG opp</div></div>
-        <div class="bubble"><div class="bubble-num">5M/mo</div><div class="bubble-label">Femcare capacity</div></div>
-      </div>
+<section id="june-automation" class="panel">
+  <p class="panel-label">Technology</p>
+  <h2>Automation &amp; Tech Upgrades</h2>
+  <div class="bubble-grid">
+    <div class="bubble accent"><div class="bubble-num">$39K</div><div class="bubble-label">Global Vision hardware</div></div>
+    <div class="bubble accent"><div class="bubble-num">$16K</div><div class="bubble-label">Annual subscription</div></div>
+    <div class="bubble"><div class="bubble-num">Aug 1</div><div class="bubble-label">Monthly bonus launch</div><div class="bubble-sub">~$125 gross/dept</div></div>
+    <div class="bubble"><div class="bubble-num">Jul 1</div><div class="bubble-label">2% pay increase</div></div>
+  </div>
+  <div class="grid-2" style="margin-top:1rem">
+    <div class="card"><span class="badge badge-moving">Pre-press</span>
+      <ul>
+        <li>Phase out ArtPro → migrate to <strong>PDF workflows</strong> (ESKO partnership)</li>
+        <li>Automate proof/route; human verification only</li>
+        <li>John Humphries leads cross-functional team (pre-press, IT, production)</li>
+        <li>Global Vision replaces manual floor checks / Axcon cameras</li>
+      </ul>
+    </div>
+    <div class="card"><span class="badge badge-next">Infrastructure</span>
+      <ul>
+        <li>Verizon bandwidth upgrade (Roanoke) still pending</li>
+        <li>NY meeting room upgraded — whiteboard, zoom, annotation</li>
+        <li>AI Copilot training scheduled; digital workflow support expanding</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-      <div class="grid-2">
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Estée Lauder</h3>
-          <ul>
-            <li>Summit attendance ~<span class="hl">200</span> (selective — core suppliers only)</li>
-            <li>Profitable Q1; projects <span class="hl">3–5%</span> growth by 2027</li>
-            <li>New AI order system live <span class="hl">Oct 1</span> — eliminate ARIBA/SAP volatility</li>
-            <li>Weekly Monday calls with Lauder materials management starting now</li>
-            <li>Facility visit (Bernice Vittori, SVP Global Quality) targeted <span class="hl">Sep/Oct</span></li>
-          </ul>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Revlon ColorSilk 3L</h3>
-          <ul>
-            <li><span class="hl">9M+</span> cartons since Mar 2025; ~<span class="hl">$1.2M</span> in sales; zero rejects</li>
-            <li>Orders at <span class="hl">300–350K</span> sheets/month</li>
-            <li>End-of-month run: ~<span class="hl">300K</span> sheets — double die cutters and gluers planned</li>
-            <li>OG version (~<span class="hl">$5M</span> opp) still pending answer</li>
-          </ul>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Oral-B</h3>
-          <ul>
-            <li>Line trial qualification complete; answer expected next week</li>
-            <li>Spin brush: ~<span class="hl">1.35M</span> units/year</li>
-            <li>Promo order: <span class="hl">28K</span> pcs confirmed</li>
-            <li>Exploring inline embossing</li>
-          </ul>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Crest Whitening</h3>
-          <p>New proof in progress. Unique holographic engineering may enable <span class="hl">1-pass printing</span> — could win full line.</p>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Olaplex</h3>
-          <ul>
-            <li>~<span class="hl">6</span> new projects awarded</li>
-            <li>QR machine at ~<span class="hl">10K</span> units/hour</li>
-            <li>Account projected <span class="hl">&gt;$1M</span></li>
-          </ul>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-section">Customer</span>
-          <h3>Femcare division</h3>
-          <p>Inquired about capacity increase. Confirmed scale to ~<span class="hl">5M cartons/month</span> (from <span class="hl">1.3–1.5M</span> current).</p>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-done">Highlight</span>
-          <h3>P&amp;G Brown Summit</h3>
-          <p>Zero downtime in April under Zero Touch Program (skincare). Diamond gets Super Serum cartons only; Arkay retains all others.</p>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-moving">New business</span>
-          <h3>Pipeline</h3>
-          <ul>
-            <li><strong>Bubble</strong> — inline business won</li>
-            <li><strong>LifeVac</strong> — CVS / Walgreens / Costco; 4 SKUs</li>
-            <li><strong>Sol de Janeiro</strong>, <strong>Lux</strong></li>
-            <li><strong>Rock</strong> — +25–40% growth into 2027</li>
-            <li><strong>Deciem / The Ordinary</strong> — targeting pre-Lauder integration</li>
-          </ul>
-        </div>
-        <div class="card update-card">
-          <span class="badge badge-next">Pricing</span>
-          <h3>Pricing policy</h3>
-          <ul>
-            <li>Factory oversold — selective increases applied (<span class="hl">5–7%</span>)</li>
-            <li>Tiered pricing for small/startup orders</li>
-            <li>Board price locked until <span class="hl">Nov 2026</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section id="june-customers" class="panel">
+  <p class="panel-label">Customers &amp; pipeline</p>
+  <h2>Customers &amp; New Business</h2>
+  <div class="grid-2">
+    <div class="card"><span class="badge badge-moving">Estée Lauder</span>
+      <ul>
+        <li><span class="hl">6-month</span> inventory terms → target <span class="hl">90 days</span></li>
+        <li><span class="hl">$370K</span> inventory liability from 2025</li>
+        <li>~<span class="hl">20%</span> of business, ~<span class="hl">40%</span> of effort — renegotiate with Mitchell &amp; Walt</li>
+      </ul>
+    </div>
+    <div class="card"><span class="badge badge-done">New business</span>
+      <ul>
+        <li><strong>Crest Gardens</strong> — bid <span class="hl">$123M</span> program for 2027</li>
+        <li><strong>Oral-B</strong> — significant brush business starts <span class="hl">August</span></li>
+        <li><strong>Sol de Janeiro</strong> — bidding large Holiday 2027 program</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <!-- FINANCIAL -->
-    <section id="financial" class="panel">
-      <p class="panel-label">Section 2</p>
-      <h2>Financial Performance</h2>
+<section id="june-hr" class="panel">
+  <p class="panel-label">Human resources</p>
+  <h2>Recruitment &amp; Retention</h2>
+  <div class="bubble-grid">
+    <div class="bubble"><div class="bubble-num">13</div><div class="bubble-label">May hires</div><div class="bubble-sub">29 interviews</div></div>
+    <div class="bubble accent"><div class="bubble-num">6</div><div class="bubble-label">FRAC job fair hires</div><div class="bubble-sub">9 interviews</div></div>
+    <div class="bubble"><div class="bubble-num">183</div><div class="bubble-label">Paperworks closing pool</div><div class="bubble-sub">Greensboro</div></div>
+    <div class="bubble accent"><div class="bubble-num">Aug 1</div><div class="bubble-label">Dept. volume bonuses</div></div>
+  </div>
+  <div class="card" style="margin-top:1rem">
+    <ul>
+      <li>Signing bonuses &amp; referral bonuses active; <span class="hl">2%</span> wage increase effective <span class="hl">July 1</span></li>
+      <li>Cross-training &amp; apprenticeship emphasized; quick release if poor fit</li>
+      <li>Robin: monthly output-linked bonuses to reduce turnover &amp; burnout</li>
+    </ul>
+  </div>
+</section>
 
-      <div class="grid-2">
-        <div class="card">
-          <span class="badge badge-done">April positives</span>
-          <ul>
-            <li>Billing <span class="hl">+$300K</span> vs. LY</li>
-            <li>Operating profit at <span class="hl">96%</span> of April budget</li>
-            <li>YTD improved from <span class="hl">78%</span> to <span class="hl">86%</span> of target</li>
-            <li>Billings <span class="hl">+8.2%</span> YTD</li>
-            <li>Bookings <span class="hl">+$6.5M</span> vs. LY</li>
-            <li>Interest expense declining (<span class="hl">3 loans</span> paid off in last 12 months)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="badge badge-moving">April cost pressures</span>
-          <ul>
-            <li><span class="hl">5</span> pay periods (vs. 4 LY)</li>
-            <li>Overtime <span class="hl">+$100K</span> (running <span class="hl">$60K/wk</span> vs. <span class="hl">$30K</span>)</li>
-            <li>Unexpected repairs <span class="hl">$50K</span></li>
-            <li>Freight <span class="hl">+$67K</span> (diesel)</li>
-            <li>Cold foil remains top material cost overrun</li>
-          </ul>
-        </div>
-      </div>
+<section id="june-actions" class="panel">
+  <p class="panel-label">Action items · June 17</p>
+  <h2>Action Items</h2>
+  <table>
+    <thead><tr><th>Owner</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>John Humphries</strong></td><td>Form pre-press automation team (Jerry, Fred, Alex); schedule ESKO proposal call; present Global Vision QC proposal.</td></tr>
+      <tr><td><strong>Ryan Scott &amp; Mike</strong></td><td>Press room shift strategy with John Schultz &amp; Frank; coordinate staffing flexibility &amp; cross-training for summer.</td></tr>
+      <tr><td><strong>Mitchell Kaneff &amp; Walt Shiels</strong></td><td>Renegotiate Estée Lauder inventory terms (90-day liability target).</td></tr>
+      <tr><td><strong>Robin Rivera &amp; Michael Dercksen</strong></td><td>Develop &amp; launch monthly bonus program — effective Aug 1.</td></tr>
+      <tr><td><strong>Brian Gordy</strong></td><td>Provide fully staffed max workforce numbers for press room shifts.</td></tr>
+      <tr><td><strong>Michael Dercksen</strong></td><td>Present automation cost analysis &amp; Esko partnership proposals.</td></tr>
+      <tr><td><strong>Robin Rivera</strong></td><td>Aggressive recruiting (feeders, press operators); FRAC &amp; Paperworks pipeline.</td></tr>
+      <tr><td><strong>Greg Pandolfi</strong></td><td>Monitor Verizon upgrade &amp; new meeting room tech; communicate install timeline.</td></tr>
+      <tr><td><strong>Mitchell Kaneff</strong></td><td>Lead staffing push to ~275; work with Robin on incentive program details.</td></tr>
+      <tr><td><strong>All managers</strong></td><td>Provide ideal department headcount to Michael; support mentoring/apprenticeship; track mix &amp; run sizes; renegotiate EL inventory terms.</td></tr>
+    </tbody>
+  </table>
+</section>
 
-      <div class="bubble-row-2">
-        <div class="bubble accent-bubble">
-          <div class="bubble-num">$7.5M</div>
-          <div class="bubble-label">May billing target</div>
-          <div class="bubble-sub">Stretch: $8M</div>
-        </div>
-        <div class="bubble accent-bubble">
-          <div class="bubble-num">$350–400K</div>
-          <div class="bubble-label">May bottom-line benefit vs. April</div>
-          <div class="bubble-sub">4 pay periods (vs. 5)</div>
-        </div>
-      </div>
+<!-- ═══ DIVIDER → MAY ARCHIVE ═══ -->
+<div id="may-archive" class="meeting-divider">
+  <p class="panel-label" style="margin-bottom:.5rem">Previous meeting</p>
+  <h2>May 13, 2026 Management Meeting</h2>
+  <p>Full notes from the prior session — scroll down or use tabs below.</p>
+  <a href="#may-summary">Open May meeting notes ↓</a>
+  <span style="display:block;margin-top:1rem"><a href="#june-summary" style="border:none;font-size:.8rem">↑ Back to latest (June)</a></span>
+</div>
 
-      <div class="bubble-grid" style="margin-top: 1rem;">
-        <div class="bubble"><div class="bubble-num">+$100K</div><div class="bubble-label">April overtime</div><div class="bubble-sub">$60K/wk vs $30K</div></div>
-        <div class="bubble"><div class="bubble-num">$50K</div><div class="bubble-label">Unexpected repairs</div></div>
-        <div class="bubble"><div class="bubble-num">+$67K</div><div class="bubble-label">Freight (diesel)</div></div>
-        <div class="bubble"><div class="bubble-num">+8.2%</div><div class="bubble-label">Billings YTD</div></div>
-      </div>
-    </section>
+<!-- ═══ MAY 13, 2026 (ARCHIVE) ═══ -->
+<section id="may-summary" class="panel">
+  <p class="panel-label">May 13, 2026 · Archive</p>
+  <h2>May Meeting Summary</h2>
+  <div class="card">
+    <ul class="summary-list">
+      <li>April billing <span class="hl">+$300K</span> vs. LY; billings <span class="hl">+8.2%</span> YTD; bookings <span class="hl">+$6.5M</span>.</li>
+      <li>Operating profit <span class="hl">96%</span> of April budget; YTD <span class="hl">86%</span> (up from <span class="hl">78%</span>).</li>
+      <li>Factory fully sold — <span class="hl">8-week</span> backlog; OT <span class="hl">$60K/wk</span>; headcount <span class="hl">245</span> (cap <span class="hl">250</span>).</li>
+      <li>May target <span class="hl">$7.5M</span> billing (stretch <span class="hl">$8M</span>); AI Phase 1 <span class="hl">$375K</span> paused.</li>
+    </ul>
+  </div>
+  <div class="bubble-grid">
+    <div class="bubble"><div class="bubble-num">+$300K</div><div class="bubble-label">April billing vs. LY</div></div>
+    <div class="bubble"><div class="bubble-num">96%</div><div class="bubble-label">April OP vs. budget</div></div>
+    <div class="bubble"><div class="bubble-num">245</div><div class="bubble-label">Headcount · cap 250</div></div>
+    <div class="bubble accent"><div class="bubble-num">8 wk</div><div class="bubble-label">Backlog</div></div>
+  </div>
+</section>
 
-    <!-- OPERATIONS -->
-    <section id="operations" class="panel">
-      <p class="panel-label">Section 3</p>
-      <h2>Operations &amp; Manufacturing</h2>
+<section id="may-metrics" class="panel">
+  <p class="panel-label">May meeting · metrics</p>
+  <h2>April &amp; YTD Metrics</h2>
+  <div class="bubble-grid">
+    <div class="bubble"><div class="bubble-num">27.5M</div><div class="bubble-label">Cartons (April)</div><div class="bubble-sub">99.9% accepted</div></div>
+    <div class="bubble"><div class="bubble-num">92M</div><div class="bubble-label">Cartons YTD</div><div class="bubble-sub">99.98%</div></div>
+    <div class="bubble warn"><div class="bubble-num">6</div><div class="bubble-label">Complaints</div><div class="bubble-sub">5 valid</div></div>
+    <div class="bubble"><div class="bubble-num">+$6.5M</div><div class="bubble-label">Bookings vs. LY</div></div>
+  </div>
+</section>
 
-      <div class="bubble-grid" style="margin-bottom: 1rem;">
-        <div class="bubble accent-bubble"><div class="bubble-num">8 wk</div><div class="bubble-label">Backlog</div></div>
-        <div class="bubble accent-bubble"><div class="bubble-num">$60K</div><div class="bubble-label">Overtime / week</div></div>
-        <div class="bubble accent-bubble"><div class="bubble-num">5M</div><div class="bubble-label">Max cartons / month (3-shift)</div></div>
-      </div>
+<section id="may-customers" class="panel">
+  <p class="panel-label">May meeting · customers</p>
+  <h2>Customers &amp; Business Development</h2>
+  <div class="bubble-grid" style="margin-bottom:1rem">
+    <div class="bubble"><div class="bubble-num">9M+</div><div class="bubble-label">Revlon cartons</div></div>
+    <div class="bubble"><div class="bubble-num">$1.2M</div><div class="bubble-label">Revlon sales</div></div>
+    <div class="bubble"><div class="bubble-num">$5M</div><div class="bubble-label">Revlon OG opp</div></div>
+    <div class="bubble"><div class="bubble-num">5M/mo</div><div class="bubble-label">Femcare capacity</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h3>Estée Lauder</h3><ul><li>Summit ~<span class="hl">200</span>; AI orders live <span class="hl">Oct 1</span>; visit Sep/Oct</li><li><span class="hl">3–5%</span> growth by 2027</li></ul></div>
+    <div class="card"><h3>Revlon / Oral-B / Olaplex</h3><ul><li>Revlon <span class="hl">300–350K</span> sheets/mo; Oral-B <span class="hl">1.35M</span> units/yr</li><li>Olaplex <span class="hl">6</span> projects; QR <span class="hl">10K</span>/hr; &gt;<span class="hl">$1M</span> account</li></ul></div>
+    <div class="card"><h3>New business</h3><ul><li>Bubble, LifeVac (4 SKUs), Sol de Janeiro, Lux, Rock, Deciem</li></ul></div>
+    <div class="card"><h3>Pricing</h3><ul><li>Selective increases <span class="hl">5–7%</span>; board locked until <span class="hl">Nov 2026</span></li></ul></div>
+  </div>
+</section>
 
-      <div class="card">
-        <span class="badge badge-moving">Capacity</span>
-        <p>Factory <strong>fully sold</strong>. Strategy: reduce make-ready time vs. adding headcount.</p>
-      </div>
+<section id="may-financial" class="panel">
+  <p class="panel-label">May meeting · financial</p>
+  <h2>Financial Performance (April)</h2>
+  <div class="bubble-row-2 bubble-grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="bubble accent"><div class="bubble-num">$7.5M</div><div class="bubble-label">May billing target</div><div class="bubble-sub">Stretch $8M</div></div>
+    <div class="bubble accent"><div class="bubble-num">$350–400K</div><div class="bubble-label">May pay-period benefit</div></div>
+  </div>
+  <div class="card" style="margin-top:1rem"><ul><li>OT <span class="hl">+$100K</span>; repairs <span class="hl">$50K</span>; freight <span class="hl">+$67K</span>; cold foil top overrun</li></ul></div>
+</section>
 
-      <div class="grid-2" style="margin-top: 1rem;">
-        <div class="card">
-          <h3>KPI / data collection</h3>
-          <ul>
-            <li>Printnect software active on all <span class="hl">4</span> Heidelberg presses</li>
-            <li>Full KPI (shift/operator/machine) requires additional licensing</li>
-            <li>Ryan Scott: cost &amp; training details by <span class="hl">June</span> meeting</li>
-            <li>Goal: live press room view on mobile devices</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Cold foil tracking</h3>
-          <ul>
-            <li>Switching from roll-based to <span class="hl">linear-feet</span> measurement</li>
-            <li>IT switch hardware arrived early — go-live <span class="hl">early June</span></li>
-            <li>Rainbow foil (Univac) inconsistent; K Laser tested as alternative</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Quality highlights</h3>
-          <ul>
-            <li><strong>Shiseido</strong> sleeve defect caught <strong>in-house</strong> before shipment — zero customer escape</li>
-            <li>April complaints: Clinique Floral (die position), Lynn Ron (missing weight claim), Olaplex (missing QR), Scentbird (spot color; <span class="hl">8K</span> rejected)</li>
-            <li>Sample standard: max <span class="hl">4 cartons</span>, fully labeled/glued/finished</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Eco3 processless plates</h3>
-          <ul>
-            <li><span class="hl">45</span> plates on hand for trial (made in Germany)</li>
-            <li>Initial mylar job run successful</li>
-            <li>Phased integration — water units in parallel until long-run stability confirmed</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Equipment</h3>
-          <ul>
-            <li>Dust collector motor replaced (Roanoke), zero injuries; spare rewound</li>
-            <li>Blanket embossing issues largely resolved</li>
-            <li>UV/roller maintenance tracked by Robbie</li>
-            <li><span class="hl">419</span> machine soundproofing in progress</li>
-          </ul>
-        </div>
-      </div>
+<section id="may-operations" class="panel">
+  <p class="panel-label">May meeting · operations</p>
+  <h2>Operations &amp; Manufacturing</h2>
+  <div class="bubble-grid">
+    <div class="bubble accent"><div class="bubble-num">$60K</div><div class="bubble-label">OT / week</div></div>
+    <div class="bubble"><div class="bubble-num">5M</div><div class="bubble-label">Max cartons / mo</div></div>
+    <div class="bubble"><div class="bubble-num">4</div><div class="bubble-label">Heidelberg + Printnect</div></div>
+  </div>
+  <div class="callout" style="margin-top:1rem"><strong>Policy:</strong> Do NOT tell customers we are busy — use only <em>"manufacturing delays."</em></div>
+</section>
 
-      <div class="callout">
-        <strong>Customer communication policy:</strong> Do <strong>NOT</strong> tell customers we are busy or behind. Use only: <em>“manufacturing delays.”</em>
-      </div>
-    </section>
+<section id="may-actions" class="panel">
+  <p class="panel-label">May meeting · actions</p>
+  <h2>May Action Items</h2>
+  <table>
+    <thead><tr><th>Owner</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ryan Scott</strong></td><td>Printnect KPI cost/training by June meeting; UV chart to Mitchell; Univac RAs; K Laser foil.</td></tr>
+      <tr><td><strong>John Humphries</strong></td><td>Printnect mobile app rollout; licensing cost.</td></tr>
+      <tr><td><strong>Michael Dercksen</strong></td><td>3-shift capacity report; cold foil linear-feet go-live.</td></tr>
+      <tr><td><strong>Greg Pandolfi</strong></td><td>Back-office IT security fixes; AT&amp;T line; TVs.</td></tr>
+      <tr><td><strong>Gregg Goldman / Mitchell</strong></td><td>Estée Lauder quality visit (Bernice Vittori) Sep/Oct.</td></tr>
+      <tr><td><strong>Walt Shiels</strong></td><td>Corey Johnson Brown Summit tour (mid-July); weekly headcount with Robin.</td></tr>
+      <tr><td><strong>John Ranson</strong></td><td>Olaplex AQL; Shiseido catch process; Eco3 trials.</td></tr>
+      <tr><td><strong>Robin Rivera</strong></td><td>Apprenticeship sign-offs; LinkedIn Recruiter $170/mo.</td></tr>
+      <tr><td><strong>Josh / Max Kaneff</strong></td><td>"The Huddle" proposal; Karrass insights; Darkroom/LinkedIn.</td></tr>
+    </tbody>
+  </table>
+  <div class="footer-ref"><strong>Reference</strong> Arkay Packaging · May 13 &amp; June 17, 2026 · Confidential.</div>
+</section>
 
-    <!-- TECHNOLOGY -->
-    <section id="technology" class="panel">
-      <p class="panel-label">Section 4</p>
-      <h2>Technology &amp; Systems</h2>
+</main>
 
-      <div class="bubble-row-2" style="margin-bottom: 1rem;">
-        <div class="bubble accent-bubble"><div class="bubble-num">$375K</div><div class="bubble-label">AI Phase 1 proposal</div><div class="bubble-sub">PAUSED</div></div>
-        <div class="bubble accent-bubble"><div class="bubble-num">90</div><div class="bubble-label">Days (Phase 1 scope)</div></div>
-      </div>
-
-      <div class="card">
-        <span class="badge badge-moving">AI / ERP consulting</span>
-        <p>Finding: <em>“Business managed by experience and willpower, not a verified operating system.”</em></p>
-        <p style="margin-top: 0.5rem;">Phase 1 proposal <strong>paused</strong> — cost too high. Greg Pandolfi to implement back-office IT fixes immediately (security, server room, workstation locks). Firm vetting required before further commitment.</p>
-      </div>
-
-      <div class="grid-2" style="margin-top: 1rem;">
-        <div class="card">
-          <h3>IT infrastructure</h3>
-          <ul>
-            <li>AT&amp;T high-capacity line (Roanoke–Hopkins) on order; ~<span class="hl">3–4 weeks</span> to install</li>
-            <li>New TVs to follow; will also improve AMS speed</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Knowledge capture</h3>
-          <ul>
-            <li>All training sessions to be recorded</li>
-            <li>Acronym/terminology manual to be built</li>
-            <li>Goal: <strong>“Arkay AI bot”</strong> for internal process Q&amp;A</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- HR -->
-    <section id="hr" class="panel">
-      <p class="panel-label">Section 5</p>
-      <h2>Human Resources</h2>
-
-      <div class="bubble-grid" style="margin-bottom: 1rem;">
-        <div class="bubble"><div class="bubble-num">245</div><div class="bubble-label">Headcount</div><div class="bubble-sub">Cap 250</div></div>
-        <div class="bubble"><div class="bubble-num">26</div><div class="bubble-label">April hires</div><div class="bubble-sub">37 interviews</div></div>
-        <div class="bubble"><div class="bubble-num">17</div><div class="bubble-label">April terminations</div><div class="bubble-sub">7 no-shows</div></div>
-        <div class="bubble accent-bubble"><div class="bubble-num">$170</div><div class="bubble-label">LinkedIn Recruiter</div><div class="bubble-sub">per month</div></div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Recruiting</h3>
-          <p>LinkedIn Recruiter (light) approved at <span class="hl">$170/month</span> for hard-to-fill skilled roles.</p>
-        </div>
-        <div class="card">
-          <h3>Apprenticeship</h3>
-          <p>Program documented with formal sign-offs and financial consequences. Trainers paid for <span class="hl">90 days</span> post-sign-off.</p>
-        </div>
-        <div class="card">
-          <span class="badge badge-moving">Priority</span>
-          <h3>Robotics</h3>
-          <p><strong>Urgent priority</strong> to reduce glue line labor strain. Expedite delivery.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- LEADERSHIP -->
-    <section id="leadership" class="panel">
-      <p class="panel-label">Section 6</p>
-      <h2>Leadership &amp; Other</h2>
-
-      <div class="card">
-        <span class="badge badge-next">May 14</span>
-        <h3>Front office retreat</h3>
-        <p>Full-day session with facilitator <strong>Juan Bandana</strong>. Focus: faster job handoff, data accuracy, sales-to-planning communication.</p>
-      </div>
-
-      <div class="grid-2" style="margin-top: 1rem;">
-        <div class="card">
-          <h3>Brown Summit leadership</h3>
-          <p><strong>T-Mac</strong> retiring end of June. <strong>Corey Johnson</strong> to take over. Tour scheduling pushed to <span class="hl">mid-July</span> (Walt Shiels coordinating).</p>
-        </div>
-        <div class="card">
-          <h3>Sales transition</h3>
-          <p><strong>Christian</strong> surpassing April onboarding goals. <strong>Hunter</strong> prospecting Long Island territory.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACTIONS -->
-    <section id="actions" class="panel">
-      <p class="panel-label">Section 7</p>
-      <h2>Action Items</h2>
-
-      <table>
-        <thead>
-          <tr><th>Owner</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Ryan Scott</strong></td>
-            <td>Provide Printnect cost &amp; training details for full KPI activation (shift/machine/operator) — by June meeting. Show UV/roller maintenance chart to Mitchell on next visit.</td>
-          </tr>
-          <tr>
-            <td><strong>John Humphries</strong></td>
-            <td>Lead Printnect mobile app rollout. Confirm licensing cost.</td>
-          </tr>
-          <tr>
-            <td><strong>Michael Dercksen</strong></td>
-            <td>Complete 3-shift capacity utilization report. Confirm cold foil linear-feet system go-live.</td>
-          </tr>
-          <tr>
-            <td><strong>Michael Dercksen / Max Kaneff / Mitchell Kaneff</strong></td>
-            <td>Vet AI consulting firm (size, stability, references) before any Phase 1 commitment.</td>
-          </tr>
-          <tr>
-            <td><strong>Greg Pandolfi</strong></td>
-            <td>Implement all back-office IT security fixes immediately. Confirm AT&amp;T line timeline; order TVs once active.</td>
-          </tr>
-          <tr>
-            <td><strong>Gregg Goldman / Mitchell Kaneff</strong></td>
-            <td>Coordinate Estée Lauder quality visit (Bernice Vittori) for Sep/Oct 2026.</td>
-          </tr>
-          <tr>
-            <td><strong>Walt Shiels</strong></td>
-            <td>Finalize Corey Johnson Brown Summit tour (mid-July). Weekly headcount review with Robin Rivera.</td>
-          </tr>
-          <tr>
-            <td><strong>Ryan Scott</strong></td>
-            <td>Manage 4 pending Univac return authorizations. Evaluate K Laser rainbow foil as primary alternative.</td>
-          </tr>
-          <tr>
-            <td><strong>John Ranson</strong></td>
-            <td>Set Olaplex AQL (QR code + scuffing). Document Shiseido in-house catch process; replicate across shifts. Continue Eco3 plate trials; track long-run performance.</td>
-          </tr>
-          <tr>
-            <td><strong>Robin Rivera</strong></td>
-            <td>Ensure apprenticeship sign-offs complete. Activate LinkedIn Recruiter at $170/month.</td>
-          </tr>
-          <tr>
-            <td><strong>Mike Sanctuary</strong></td>
-            <td>Cascade P&amp;G zero-downtime recognition to teams.</td>
-          </tr>
-          <tr>
-            <td><strong>Mitchell Kaneff / Greg Pandolfi</strong></td>
-            <td>Set up workstation recording (video/audio) for all training sessions.</td>
-          </tr>
-          <tr>
-            <td><strong>Brian Hopkins</strong></td>
-            <td>Mobile app roll-out — contact BOPST re: die-cutter data integration.</td>
-          </tr>
-          <tr>
-            <td><strong>Josh Kaneff</strong></td>
-            <td>“The Huddle” proposal — weekly rotating internal meetings for Hauppauge pre-production and planning teams.</td>
-          </tr>
-          <tr>
-            <td><strong>Max Kaneff</strong></td>
-            <td>Insights from Karrass Negotiating Course. Updates to Darkroom/LinkedIn.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="footer-ref">
-        <strong>Reference</strong>
-        Arkay Packaging · Management Meeting · May 13, 2026 · Confidential. Content from May management meeting minutes. No private contacts published.
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    const tabs = document.querySelectorAll(".tab-nav a");
-    const panels = document.querySelectorAll(".panel");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
-          }
-        });
-      },
-      { rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 120}px 0px -55% 0px`, threshold: 0 }
-    );
-
-    panels.forEach((p) => observer.observe(p));
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", (e) => {
-        e.preventDefault();
-        document.querySelector(tab.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
-      });
+<script>
+  const tabs = document.querySelectorAll(".tab-nav a");
+  const panels = document.querySelectorAll(".panel, .meeting-divider");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
+      }
     });
-  </script>
+  }, { rootMargin: "-120px 0px -55% 0px", threshold: 0 });
+  panels.forEach((p) => observer.observe(p));
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector(tab.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>
 </body>
 </html>
