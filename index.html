@@ -71,131 +71,13 @@
     .meeting-divider a{display:inline-block;font-size:.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:.5rem 1rem;border:1px solid var(--primary);border-radius:999px}
     .meeting-divider a:hover{background:var(--primary);color:#fff}
     .footer-ref{margin-top:2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--text-muted)}
-    .print-hint{font-size:.75rem;color:var(--text-muted);margin-top:.5rem}
     @media(max-width:640px){.brand{font-size:1rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}}
 
-    /* ~70% compact layout for printing */
     @media print {
-      @page { size: letter portrait; margin: 0.4in 0.45in; }
-
-      html {
-        font-size: 10.5px; /* ~70% of 15px base */
-        scroll-snap-type: none;
-      }
-
-      body {
-        background: #fff;
-        color: #111;
-        line-height: 1.45;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .site-header {
-        position: static;
-        box-shadow: none;
-        border-bottom: 2px solid #1e4d8c;
-        page-break-after: avoid;
-      }
-
-      .tab-nav,
-      .print-hint,
-      .meeting-divider a,
-      .meeting-divider span { display: none !important; }
-
-      .header-inner,
-      main { max-width: 100%; padding: 0; }
-
-      .brand { font-size: 1rem; }
-      .date-pill { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
-
-      .panel {
-        scroll-snap-align: none;
-        scroll-snap-stop: normal;
-        margin-bottom: 0.85rem;
-        padding-top: 0;
-        page-break-inside: avoid;
-      }
-
-      .meeting-title { font-size: 1.15rem; }
-      .panel h2 { font-size: 1rem; margin-bottom: 0.5rem; }
-      .meeting-date { font-size: 0.7rem; margin-bottom: 0.5rem; }
-      .panel-label { font-size: 0.6rem; margin-bottom: 0.2rem; }
-
-      .card {
-        box-shadow: none;
-        padding: 0.6rem 0.75rem;
-        margin-bottom: 0.5rem;
-        page-break-inside: avoid;
-      }
-
-      .card h3 { font-size: 0.85rem; margin-bottom: 0.35rem; }
-      .card p, .card li, .summary-list li { font-size: 0.75rem; }
-      .summary-list li { padding: 0.35rem 0 0.35rem 0.9rem; }
-
-      .hl {
-        font-size: 0.75rem;
-        padding: 0.05rem 0.4rem;
-        border-width: 1px;
-      }
-
-      .bubble-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.45rem;
-        margin: 0.45rem 0;
-      }
-
-      .bubble {
-        min-height: auto;
-        padding: 0.45rem 0.35rem;
-        border-radius: 10px;
-        box-shadow: none;
-        page-break-inside: avoid;
-      }
-
-      .bubble .bubble-num { font-size: 1.15rem; }
-      .bubble .bubble-label { font-size: 0.58rem; margin-top: 0.2rem; }
-      .bubble .bubble-sub { font-size: 0.62rem; margin-top: 0.15rem; }
-
-      .grid-2 {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.45rem;
-      }
-
-      .badge { font-size: 0.55rem; padding: 0.1rem 0.35rem; margin-bottom: 0.35rem; }
-      .callout { padding: 0.5rem 0.65rem; font-size: 0.72rem; margin-top: 0.45rem; }
-
-      table {
-        font-size: 0.68rem;
-        box-shadow: none;
-        page-break-inside: auto;
-      }
-
-      th, td { padding: 0.35rem 0.45rem; }
-      th { font-size: 0.58rem; }
-      tr { page-break-inside: avoid; }
-
-      .meeting-divider {
-        margin: 1rem 0 0.75rem;
-        padding: 0.75rem;
-        page-break-before: always;
-        page-break-after: avoid;
-        border-width: 1px;
-      }
-
-      .meeting-divider h2 { font-size: 1rem; }
-      .meeting-divider p { font-size: 0.72rem; margin-bottom: 0; }
-
-      .footer-ref {
-        font-size: 0.65rem;
-        padding: 0.5rem;
-        margin-top: 0.75rem;
-        page-break-inside: avoid;
-      }
-
-      /* Force June section to start on page 1 after compact header */
-      #june-summary { page-break-before: avoid; }
-      #may-archive { page-break-before: always; }
+      .tab-nav { display: none; }
+      .site-header { position: static; }
+      html { scroll-snap-type: none; }
+      .panel { scroll-snap-align: none; scroll-snap-stop: normal; }
     }
   </style>
 </head>
@@ -207,7 +89,6 @@
       <div class="brand">Arkay Management Meeting Notes</div>
       <span class="date-pill">June Management Meeting Notes · Latest</span>
     </div>
-    <p class="print-hint">Tip: Use <strong>Print</strong> (⌘P) — layout auto-compacts to ~70% for letter-size pages.</p>
     <nav class="tab-nav" aria-label="Sections">
       <a href="#june-summary" class="active">Summary</a>
       <a href="#june-metrics">Metrics</a>
