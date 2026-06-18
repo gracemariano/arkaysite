@@ -16,15 +16,17 @@
       --done: #d1fae5; --done-text: #065f46;
       --next: #dbeafe; --next-text: #1e40af;
       --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.04);
-      --radius: 12px; --header-h: 8rem;
+      --radius: 12px; --header-h: 10.5rem;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+    html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
     body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
     .site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
-    .header-inner{max-width:1100px;margin:0 auto;padding:1rem 1.25rem .75rem}
-    .brand-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.85rem}
-    .brand{font-size:1.15rem;font-weight:700;color:var(--primary);letter-spacing:-.02em}
+    .logo-bar{background:linear-gradient(180deg,#faf8f4 0%,#fff 100%);border-bottom:1px solid var(--border);padding:.85rem 1.25rem;text-align:center}
+    .site-logo{height:clamp(44px,8vw,64px);width:auto;max-width:240px;object-fit:contain;display:inline-block}
+    .header-inner{max-width:1100px;margin:0 auto;padding:.75rem 1.25rem .65rem}
+    .brand-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.65rem}
+    .brand{font-size:1rem;font-weight:700;color:var(--primary);letter-spacing:-.02em}
     .date-pill{font-size:.78rem;font-weight:600;color:#fff;background:var(--primary);padding:.35rem .85rem;border-radius:999px}
     .date-pill.muted{background:var(--surface-muted);color:var(--text-muted);border:1px solid var(--border)}
     .tab-nav{display:flex;flex-wrap:wrap;gap:.35rem;padding-bottom:.25rem;overflow-x:auto}
@@ -32,8 +34,18 @@
     .tab-nav a:hover{background:var(--surface-muted);color:var(--text)}
     .tab-nav a.active{background:var(--primary);color:#fff}
     .tab-nav a.archive{border:1px dashed var(--border)}
-    main{max-width:1100px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
-    .panel{scroll-snap-align:start;scroll-snap-stop:always;margin-bottom:2.5rem;padding-top:.5rem}
+    main{max-width:1100px;margin:0 auto;padding:0 1.25rem 2rem}
+    .panel{
+      min-height:calc(100dvh - var(--header-h));
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+      margin-bottom:0;
+      padding:1.5rem 0 2rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .panel.tall{justify-content:flex-start;padding-top:1.25rem}
     .panel-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
     .panel h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem;letter-spacing:-.02em}
     .meeting-title{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:800;color:var(--primary);margin-bottom:.25rem;letter-spacing:-.02em}
@@ -65,25 +77,49 @@
     th,td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--border);vertical-align:top}
     th{background:var(--surface-muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
     tr:last-child td{border-bottom:none}
-    .meeting-divider{margin:3.5rem 0 2.5rem;padding:2rem 1.5rem;background:var(--surface);border:2px solid var(--primary);border-radius:var(--radius);text-align:center;scroll-snap-align:start}
+    .meeting-divider{
+      min-height:calc(100dvh - var(--header-h));
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+      margin:0;
+      padding:2rem 1.5rem;
+      background:var(--surface);
+      border:2px solid var(--primary);
+      border-radius:var(--radius);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
     .meeting-divider h2{font-size:1.35rem;color:var(--primary);margin-bottom:.35rem}
     .meeting-divider p{color:var(--text-muted);font-size:.9rem;margin-bottom:1rem}
     .meeting-divider a{display:inline-block;font-size:.85rem;font-weight:600;color:var(--primary);text-decoration:none;padding:.5rem 1rem;border:1px solid var(--primary);border-radius:999px}
     .meeting-divider a:hover{background:var(--primary);color:#fff}
     .footer-ref{margin-top:2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--text-muted)}
-    @media(max-width:640px){.brand{font-size:1rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}}
+    .scroll-hint{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);animation:fadeHint 2s ease-in-out infinite}
+    @keyframes fadeHint{0%,100%{opacity:.35}50%{opacity:1}}
+    nav.snap-dots{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:.4rem}
+    nav.snap-dots a{width:8px;height:8px;border-radius:50%;background:rgba(30,77,140,.2);border:1px solid rgba(30,77,140,.35);transition:transform .2s,background .2s}
+    nav.snap-dots a:hover,nav.snap-dots a.active{background:var(--primary);transform:scale(1.35)}
+    nav.snap-dots a span{display:none}
+    @media(max-width:640px){.brand{font-size:.9rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}nav.snap-dots{display:none}}
 
     @media print {
-      .tab-nav { display: none; }
+      .tab-nav, nav.snap-dots { display: none; }
       .site-header { position: static; }
       html { scroll-snap-type: none; }
-      .panel { scroll-snap-align: none; scroll-snap-stop: normal; }
+      .panel, .meeting-divider { scroll-snap-align: none; scroll-snap-stop: normal; min-height: auto; }
+      .scroll-hint { display: none; }
     }
   </style>
 </head>
 <body>
 
 <header class="site-header">
+  <div class="logo-bar">
+    <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="240" height="64" />
+  </div>
   <div class="header-inner">
     <div class="brand-row">
       <div class="brand">Arkay Management Meeting Notes</div>
@@ -104,10 +140,23 @@
   </div>
 </header>
 
+<nav class="snap-dots" aria-label="Section navigation">
+  <a href="#june-summary" title="Summary"></a>
+  <a href="#june-metrics" title="Metrics"></a>
+  <a href="#june-financial" title="Financial"></a>
+  <a href="#june-capacity" title="Capacity"></a>
+  <a href="#june-quality" title="Quality"></a>
+  <a href="#june-automation" title="Automation"></a>
+  <a href="#june-customers" title="Customers"></a>
+  <a href="#june-hr" title="HR"></a>
+  <a href="#june-actions" title="Actions"></a>
+  <a href="#may-archive" title="May archive"></a>
+</nav>
+
 <main>
 
 <!-- ═══ JUNE 17, 2026 ═══ -->
-<section id="june-summary" class="panel">
+<section id="june-summary" class="panel" style="position:relative">
   <p class="panel-label">Latest · June 2026</p>
   <h2 class="meeting-title">June Management Meeting Notes</h2>
   <p class="meeting-date">Meeting date: June 17, 2026</p>
@@ -130,9 +179,10 @@
     <div class="bubble accent"><div class="bubble-num">0</div><div class="bubble-label">May rejections</div><div class="bubble-sub">26.5M cartons</div></div>
     <div class="bubble"><div class="bubble-num">450M</div><div class="bubble-label">Max capacity / yr</div><div class="bubble-sub">~$130M sales</div></div>
   </div>
+  <p class="scroll-hint">Scroll ↓ — each section stops</p>
 </section>
 
-<section id="june-metrics" class="panel">
+<section id="june-metrics" class="panel tall">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>May Performance Metrics</h2>
   <div class="bubble-grid">
@@ -230,7 +280,7 @@
   </div>
 </section>
 
-<section id="june-customers" class="panel">
+<section id="june-customers" class="panel tall">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>Customers &amp; New Business</h2>
   <div class="grid-2">
@@ -269,7 +319,7 @@
   </div>
 </section>
 
-<section id="june-actions" class="panel">
+<section id="june-actions" class="panel tall">
   <p class="panel-label">June Management Meeting Notes</p>
   <h2>June Action Items</h2>
   <table>
@@ -331,7 +381,7 @@
   </div>
 </section>
 
-<section id="may-customers" class="panel">
+<section id="may-customers" class="panel tall">
   <p class="panel-label">May Management Meeting Notes</p>
   <h2>Customers &amp; Business Development</h2>
   <div class="bubble-grid" style="margin-bottom:1rem">
@@ -369,7 +419,7 @@
   <div class="callout" style="margin-top:1rem"><strong>Policy:</strong> Do NOT tell customers we are busy — use only <em>"manufacturing delays."</em></div>
 </section>
 
-<section id="may-actions" class="panel">
+<section id="may-actions" class="panel tall">
   <p class="panel-label">May Management Meeting Notes</p>
   <h2>May Action Items</h2>
   <table>
@@ -393,21 +443,37 @@
 
 <script>
   const tabs = document.querySelectorAll(".tab-nav a");
+  const dots = document.querySelectorAll("nav.snap-dots a");
   const panels = document.querySelectorAll(".panel, .meeting-divider");
+
+  function setActive(id) {
+    tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
+    dots.forEach((d) => d.classList.toggle("active", d.getAttribute("href") === `#${id}`));
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        tabs.forEach((t) => t.classList.toggle("active", t.getAttribute("href") === `#${id}`));
-      }
+      if (entry.isIntersecting) setActive(entry.target.id);
     });
-  }, { rootMargin: "-120px 0px -55% 0px", threshold: 0 });
+  }, { rootMargin: "-140px 0px -50% 0px", threshold: 0 });
+
   panels.forEach((p) => observer.observe(p));
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", (e) => {
+
+  [...tabs, ...dots].forEach((link) => {
+    link.addEventListener("click", (e) => {
       e.preventDefault();
-      document.querySelector(tab.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(link.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
     });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!["ArrowDown", "ArrowUp", "PageDown", "PageUp"].includes(e.key)) return;
+    e.preventDefault();
+    const list = [...panels];
+    const idx = list.findIndex((p) => p.getBoundingClientRect().top >= -window.innerHeight * 0.4);
+    const i = idx < 0 ? 0 : idx;
+    const next = e.key === "ArrowDown" || e.key === "PageDown" ? Math.min(i + 1, list.length - 1) : Math.max(i - 1, 0);
+    list[next].scrollIntoView({ behavior: "smooth" });
   });
 </script>
 </body>
