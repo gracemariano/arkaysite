@@ -1,6 +1,6 @@
 # Arkay Management Meeting Notes
 
-Combined scroll site — **June 17, 2026** (latest) + **May 13, 2026** archive.
+Combined scroll site — **June Management Meeting Notes** (latest, Jun 17, 2026) + **May Management Meeting Notes** (May 13, 2026). New month added at the top each cycle.
 
 Live: [https://gracemariano.github.io/arkaysite/](https://gracemariano.github.io/arkaysite/)
 
