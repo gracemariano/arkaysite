@@ -16,18 +16,18 @@
       --done: #d1fae5; --done-text: #065f46;
       --next: #dbeafe; --next-text: #1e40af;
       --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.04);
-      --radius: 12px; --header-h: 9.5rem;
+      --radius: 12px; --header-h: 11rem;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
     body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
     .site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
-    .header-inner{max-width:1100px;margin:0 auto;padding:.85rem 1.25rem .65rem}
-    .header-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.65rem}
-    .logo-link{display:inline-flex;align-items:center;line-height:0;flex-shrink:0;transition:opacity .2s,transform .2s}
+    .header-inner{max-width:1100px;margin:0 auto;padding:1rem 1.25rem .75rem}
+    .header-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+    .logo-link{display:inline-flex;align-items:center;line-height:0;flex:1 1 auto;min-width:0;max-width:72%;transition:opacity .2s,transform .2s}
     .logo-link:hover{opacity:.82;transform:scale(1.02)}
     .logo-link:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
-    .site-logo{height:clamp(38px,6vw,50px);width:auto;max-width:170px;object-fit:contain;display:block;background:transparent}
+    .site-logo{height:clamp(56px,11vw,82px);width:auto;max-width:min(320px,100%);object-fit:contain;display:block;background:transparent}
     .brand-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.55rem}
     .brand{font-size:1rem;font-weight:700;color:var(--primary);letter-spacing:-.02em}
     .date-pill{font-size:.78rem;font-weight:600;color:#fff;background:var(--primary);padding:.35rem .85rem;border-radius:999px}
@@ -106,7 +106,7 @@
     nav.snap-dots a{width:8px;height:8px;border-radius:50%;background:rgba(30,77,140,.2);border:1px solid rgba(30,77,140,.35);transition:transform .2s,background .2s}
     nav.snap-dots a:hover,nav.snap-dots a.active{background:var(--primary);transform:scale(1.35)}
     nav.snap-dots a span{display:none}
-    @media(max-width:640px){.brand{font-size:.9rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}nav.snap-dots{display:none}}
+    @media(max-width:640px){.brand{font-size:.9rem}.tab-nav a{font-size:.7rem;padding:.4rem .6rem}nav.snap-dots{display:none}.header-top{align-items:flex-start}.site-logo{height:clamp(48px,16vw,68px);max-width:min(260px,78vw)}.date-pill{font-size:.7rem;padding:.3rem .65rem;flex-shrink:0;margin-top:.35rem}}
 
     @media print {
       .tab-nav, nav.snap-dots { display: none; }
@@ -123,7 +123,7 @@
   <div class="header-inner">
     <div class="header-top">
       <a href="https://www.linkedin.com/company/arkaypackaging/?viewAsMember=true" class="logo-link" target="_blank" rel="noopener noreferrer" aria-label="Arkay on LinkedIn">
-        <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="170" height="50" />
+        <img src="arkay-logo.png" alt="Arkay Packaging" class="site-logo" width="320" height="82" />
       </a>
       <span class="date-pill">June Management Meeting Notes · Latest</span>
     </div>
