@@ -1,0 +1,175 @@
+{
+  "id": "june-2026",
+  "title": "June Management Meeting Notes",
+  "month": "June",
+  "year": 2026,
+  "meetingDate": "2026-06-17",
+  "subtitle": "May Business Review",
+  "executiveSummary": [
+    {
+      "theme": "Staffing",
+      "line": "Staffing is #1 constraint",
+      "metrics": [
+        { "value": "239", "label": "Headcount" },
+        { "value": "275+", "label": "Target" },
+        { "value": "60%", "label": "Capacity in use" }
+      ]
+    },
+    {
+      "theme": "Sales",
+      "line": "Strong bookings, billings timing lag",
+      "metrics": [
+        { "value": "+4%", "label": "Billings YoY" },
+        { "value": "+$10M", "label": "Bookings increase" }
+      ]
+    },
+    {
+      "theme": "Overtime",
+      "line": "Overtime pressure continues",
+      "metrics": [
+        { "value": "$60K", "label": "Per week" },
+        { "value": "+$76K", "label": "May OT increase" }
+      ]
+    },
+    {
+      "theme": "Quality",
+      "line": "May shipping performance",
+      "metrics": [
+        { "value": "26.5M", "label": "Cartons shipped" },
+        { "value": "0", "label": "Rejections" },
+        { "value": "100%", "label": "Acceptance" }
+      ]
+    },
+    {
+      "theme": "Estée Lauder",
+      "line": "Inventory terms unsustainable",
+      "metrics": [
+        { "value": "6 mo", "label": "Current terms" },
+        { "value": "$370K", "label": "Liability" },
+        { "value": "90 days", "label": "Target" }
+      ]
+    },
+    {
+      "theme": "Automation",
+      "line": "Global Vision and bonus launch",
+      "metrics": [
+        { "value": "$39K", "label": "Scanner hardware" },
+        { "value": "Aug 1", "label": "Bonus launch" }
+      ]
+    }
+  ],
+  "kpis": [
+    { "value": "239", "label": "Headcount", "subtitle": "Target 275+", "variant": "accent" },
+    { "value": "$60K", "label": "Weekly Overtime", "subtitle": "+$76K in May", "variant": "warn" },
+    { "value": "+4%", "label": "Billings YoY", "subtitle": "Bookings +$10M", "variant": "primary" },
+    { "value": "+$10M", "label": "Bookings Increase", "subtitle": "Strong pipeline", "variant": "primary" },
+    { "value": "0", "label": "May Rejections", "subtitle": "26.5M cartons", "variant": "default" },
+    { "value": "450M", "label": "Annual Capacity", "subtitle": "~$130M sales", "variant": "default" }
+  ],
+  "sections": [
+    {
+      "id": "financial",
+      "title": "Financial Performance",
+      "expanded": false,
+      "metrics": [
+        { "value": "+4%", "label": "Billings YoY" },
+        { "value": "+$10M", "label": "Bookings" },
+        { "value": "$1.9M", "label": "EL billings behind YTD" },
+        { "value": "55→26%", "label": "P&G share Jan–May" }
+      ],
+      "bullets": [
+        "Nestle: lower billings, higher bookings (timing).",
+        "Inventory build target: 6 mo → 3 mo for P&G.",
+        "Overtime +$76K in May; Brian Gordy targeting $40K/wk from $60K.",
+        "Repairs above LY — Heidelberg presses, roller catch-up; freight elevated.",
+        "Maintain P&G at >40% of sales for overhead recovery."
+      ]
+    },
+    {
+      "id": "capacity",
+      "title": "Capacity & Staffing",
+      "expanded": false,
+      "metrics": [
+        { "value": "~60%", "label": "Capacity in use" },
+        { "value": "570M", "label": "Theoretical max" },
+        { "value": "450M", "label": "Realistic max / yr" },
+        { "value": "275", "label": "Peak headcount" }
+      ],
+      "bullets": [
+        "Some presses on 2 shifts only — lost time from stop/start cycles.",
+        "Need full 1st & 2nd shift staffing; expand 3rd where possible.",
+        "Canon press proofs moratorium until Aug 1 — focus on confirmed business."
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "Quality Control",
+      "expanded": false,
+      "metrics": [
+        { "value": "0", "label": "Rejections (May)" },
+        { "value": "26.5M", "label": "Cartons shipped" },
+        { "value": "$45K", "label": "Inventory recovered" }
+      ],
+      "bullets": [
+        "May complaints (4): P&G bent flaps, Clinique skewed lineup, Japan damaged tuck flaps — 3 validated.",
+        "Cold foil barcode rollout successful."
+      ]
+    },
+    {
+      "id": "automation",
+      "title": "Automation & Tech Upgrades",
+      "expanded": false,
+      "metrics": [
+        { "value": "$39K", "label": "Global Vision hardware" },
+        { "value": "$16K", "label": "Annual subscription" },
+        { "value": "Aug 1", "label": "Monthly bonus launch" },
+        { "value": "Jul 1", "label": "2% pay increase" }
+      ],
+      "bullets": [
+        "Phase out ArtPro → migrate to PDF workflows (ESKO partnership).",
+        "Global Vision replaces manual floor checks / Axcon cameras.",
+        "Verizon bandwidth upgrade (Roanoke) still pending.",
+        "AI Copilot training scheduled."
+      ]
+    },
+    {
+      "id": "customers",
+      "title": "Customers & New Business",
+      "expanded": false,
+      "bullets": [
+        "Estée Lauder: 6-month inventory terms → target 90 days; $370K liability; ~20% of business, ~40% of effort.",
+        "Crest Gardens — bid $123M program for 2027.",
+        "Oral-B — significant brush business starts August.",
+        "Sol de Janeiro — bidding large Holiday 2027 program."
+      ]
+    },
+    {
+      "id": "hr",
+      "title": "Recruitment & Retention",
+      "expanded": false,
+      "metrics": [
+        { "value": "13", "label": "May hires" },
+        { "value": "6", "label": "FRAC fair hires" },
+        { "value": "183", "label": "Paperworks pool" },
+        { "value": "Aug 1", "label": "Dept bonuses" }
+      ],
+      "bullets": [
+        "Signing bonuses & referral bonuses active; 2% wage increase effective July 1.",
+        "Cross-training & apprenticeship emphasized; monthly output-linked bonuses."
+      ]
+    }
+  ],
+  "actions": [
+    { "owner": "John Humphries", "action": "Form pre-press automation team; schedule ESKO proposal; present Global Vision QC proposal.", "priority": "High", "status": "In Progress" },
+    { "owner": "Ryan Scott & Mike", "action": "Press room shift strategy with John Schultz & Frank; summer staffing flexibility.", "priority": "High", "status": "In Progress" },
+    { "owner": "Mitchell Kaneff & Walt Shiels", "action": "Renegotiate Estée Lauder inventory terms (90-day liability target).", "priority": "High", "status": "In Progress" },
+    { "owner": "Robin Rivera & Michael Dercksen", "action": "Develop & launch monthly bonus program — effective Aug 1.", "priority": "High", "status": "In Progress" },
+    { "owner": "Brian Gordy", "action": "Provide fully staffed max workforce numbers for press room shifts.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Michael Dercksen", "action": "Present automation cost analysis & Esko partnership proposals.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Robin Rivera", "action": "Aggressive recruiting (feeders, press operators); FRAC & Paperworks pipeline.", "priority": "High", "status": "Ongoing" },
+    { "owner": "Greg Pandolfi", "action": "Monitor Verizon upgrade & new meeting room tech.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Mitchell Kaneff", "action": "Lead staffing push to ~275; work with Robin on incentive program.", "priority": "High", "status": "In Progress" },
+    { "owner": "All managers", "action": "Provide ideal department headcount; support mentoring; renegotiate EL terms.", "priority": "High", "status": "Ongoing" }
+  ],
+  "searchKeywords": ["staffing", "overtime", "Estée Lauder", "P&G", "Global Vision", "ESKO", "Oral-B", "Sol de Janeiro", "Robin", "Michael", "John Humphries", "Mitchell", "AI", "bonus", "freight", "Clinique", "Nestle"]
+}
