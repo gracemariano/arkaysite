@@ -1,0 +1,214 @@
+{
+  "id": "july-2026",
+  "title": "July Management Meeting Notes",
+  "month": "July",
+  "year": 2026,
+  "meetingDate": "2026-07-22",
+  "subtitle": "June Business Review",
+  "executiveSummary": [
+    {
+      "theme": "Leadership",
+      "line": "New CTO Steve Habermas — AI, ERP, robotics, factory data",
+      "metrics": [
+        { "value": "CTO", "label": "Steve Habermas" },
+        { "value": "AI", "label": "Primary focus" }
+      ]
+    },
+    {
+      "theme": "Sales",
+      "line": "June billings — first $8M month of the year",
+      "metrics": [
+        { "value": "$8M", "label": "June billings" },
+        { "value": "+$1M", "label": "vs prior month" },
+        { "value": "+$10M", "label": "Bookings YTD" },
+        { "value": "+22%", "label": "Bookings vs LY" }
+      ]
+    },
+    {
+      "theme": "Financial",
+      "line": "Gross margin and depreciation tailwind",
+      "metrics": [
+        { "value": "29.7%", "label": "Gross margin (June)" },
+        { "value": "28.2%", "label": "Gross margin YTD" },
+        { "value": "$400K", "label": "Depreciation benefit YTD" }
+      ]
+    },
+    {
+      "theme": "Staffing",
+      "line": "Headcount climbing; glue line still hiring",
+      "metrics": [
+        { "value": "250", "label": "Headcount" },
+        { "value": "81→95", "label": "Glue line target" }
+      ]
+    },
+    {
+      "theme": "Quality",
+      "line": "June shipping performance",
+      "metrics": [
+        { "value": "25.9M", "label": "Cartons shipped" },
+        { "value": "99.95%", "label": "Acceptance rate" },
+        { "value": "13K", "label": "Rejected" }
+      ]
+    },
+    {
+      "theme": "Estée Lauder",
+      "line": "Volume decline and outstanding liability",
+      "metrics": [
+        { "value": "18.5%", "label": "Share of business" },
+        { "value": "$300K", "label": "Outstanding liability" }
+      ]
+    },
+    {
+      "theme": "Cost savings",
+      "line": "Environmental compliance renegotiated",
+      "metrics": [
+        { "value": "$250K→$79K", "label": "Platinum ECHO cost" }
+      ]
+    }
+  ],
+  "kpis": [
+    { "value": "$8M", "label": "June Billings", "subtitle": "First $8M month", "variant": "primary" },
+    { "value": "+$10M", "label": "Bookings YTD", "subtitle": "~22% ahead of LY", "variant": "primary" },
+    { "value": "250", "label": "Headcount", "subtitle": "Glue line 81 → 95", "variant": "accent" },
+    { "value": "29.7%", "label": "Gross Margin", "subtitle": "June · 28.2% YTD", "variant": "default" },
+    { "value": "99.95%", "label": "Acceptance Rate", "subtitle": "25.9M cartons", "variant": "default" },
+    { "value": "$400K", "label": "Depreciation Benefit", "subtitle": "Through year-end", "variant": "default" },
+    { "value": "450M", "label": "Annual Capacity", "subtitle": "~$130M sales", "variant": "default" },
+    { "value": "$7.4M", "label": "July Bookings MTD", "subtitle": "~10 days to close", "variant": "warn" }
+  ],
+  "sections": [
+    {
+      "id": "leadership",
+      "title": "Leadership & Organizational Updates",
+      "expanded": false,
+      "bullets": [
+        "Steve Habermas — new CTO leading AI, ERP integration, factory data collection, and robotics. Onsite Hauppauge this week; Roanoke full-time starting following Monday.",
+        "Travelex replaces prior travel agency (Grace/Graziella after price doubling). 24-hour concierge, online booking, dedicated rep. Starts July 31; rollout August 1.",
+        "Marshall McLennan negotiated environmental compliance for Platinum ECHO 2027: ~$250,000 down to $79,000.",
+        "Staffing changes: West leaving in 30 days (die cutting); Izzy (top pressman) departing ~8–10 weeks reserve training then returning; Wes departing July 14."
+      ]
+    },
+    {
+      "id": "financial",
+      "title": "Financial Performance",
+      "expanded": false,
+      "metrics": [
+        { "value": "+$1M", "label": "June billings increase" },
+        { "value": "$8M", "label": "June billings total" },
+        { "value": "+4%", "label": "Billings YTD vs LY" },
+        { "value": "+$130K", "label": "Operating income vs LY (month)" },
+        { "value": "$4.0M", "label": "Operating income YTD" },
+        { "value": "+$1.5M", "label": "Bookings increase (month)" }
+      ],
+      "bullets": [
+        "Estée Lauder bounced back strongly in June after slow May.",
+        "L'Oréal down $800,000 YTD; Blue Mercury down $500,000 YTD (first six months).",
+        "Mix positive; overtime, freight, and repairs & maintenance headwinds on margin.",
+        "Two large assets fully depreciated end of June — ~$80,000/month reversal through year-end.",
+        "SG&A unfavorable $69,000 for month: $25,000 LOC renewal fee ($10M facility), higher travel, final R&D tax-refund payment (program yielded $2M savings over recent years).",
+        "July pace: $7.4M MTD bookings with ~10 days left; last July finished $6.9M."
+      ]
+    },
+    {
+      "id": "factory-costs",
+      "title": "Factory & SG&A Costs",
+      "expanded": false,
+      "metrics": [
+        { "value": "$300K", "label": "Freight YTD" },
+        { "value": "$143K", "label": "Repairs & maintenance" },
+        { "value": "+$72K", "label": "Consultants YTD" },
+        { "value": "+$78K", "label": "Travel YTD" },
+        { "value": "$25K", "label": "LOC renewal fee" }
+      ],
+      "bullets": [
+        "Freight expected to double in H2 on fuel/geopolitical pressure.",
+        "Consultants include ~$40,000 AI-related; Ricardo $30,000; tax consultants +$18,000.",
+        "One additional sales headcount +$40,000 YTD."
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Production, Capacity & Staffing",
+      "expanded": false,
+      "metrics": [
+        { "value": "250", "label": "Headcount" },
+        { "value": "81", "label": "Glue line now" },
+        { "value": "95", "label": "Glue line target" },
+        { "value": "450M", "label": "Units / year capacity" },
+        { "value": "$130M", "label": "Sales capacity" }
+      ],
+      "bullets": [
+        "Fully staffed facility could produce ~450M units/year (~$130M sales); ~$100M realistic with current equipment.",
+        "Glue line printed ~500,000 sheets in two days; two coding machines now running.",
+        "Obsolete inventory: $40,000 approvals through; ~$300,000 from 2025 remains outstanding.",
+        "6–8 interviews scheduled; new pressman begins Monday.",
+        "Additional equipment investment planned 2027–2028."
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "Quality & Rejects",
+      "expanded": false,
+      "metrics": [
+        { "value": "25.9M", "label": "Cartons shipped (June)" },
+        { "value": "13,000", "label": "Rejected" },
+        { "value": "99.95%", "label": "Acceptance (June)" },
+        { "value": "99.98%", "label": "Acceptance YTD" },
+        { "value": "144.4M", "label": "Cartons YTD" },
+        { "value": "7", "label": "Complaints (June)" }
+      ],
+      "bullets": [
+        "June complaints: Innovation Labs, Olaplex, Clinique, Bobby Brown, Native (13,000-carton reject — misplaced die/security tag), P&G (2).",
+        "Do-over YTD: 4 jobs, 41,605 units, $22,943 cost (added P&G blister-card SBS vs blister-board mix-up).",
+        "Over 50% of new graphic jobs required rework due to imaging/pre-press file errors — urgent daily tracking required.",
+        "Olaplex: 127 miscolored/missing-logo cartons in one case; resolved without full rerun. Account ~$1.5M + $600K holiday order at risk.",
+        "Leadership: stop production immediately when issues found — no penalty for reporting."
+      ]
+    },
+    {
+      "id": "customers",
+      "title": "Customer & Contract Updates",
+      "expanded": false,
+      "bullets": [
+        "Estée Lauder: 18.5% of business vs 22.2% LY (Bobby Brown weakness); price increase pursued; ~$300K aged 2025 liability uncollected.",
+        "Oral-B: ramping mid-August; contract extension requested (no cartons since January award).",
+        "Crest: single-pass hologram/rainbow effect in progress; beveled carton proof for 2–3 year contract; first sheets Roanoke ~July 27.",
+        "Sol de Janeiro: expanding volume (promo + line); new Epson printer; men's fragrance pulling production from China.",
+        "P&G: Olay cartons and femcare negotiations; P&G pushing 1-year vs 2–3 year terms.",
+        "KDC/One qualifying for US and European work (Unilever, J&J); NDA discussions with Creatures (fragrance collectibles)."
+      ]
+    },
+    {
+      "id": "hr",
+      "title": "HR & Benefits",
+      "expanded": false,
+      "metrics": [
+        { "value": "26", "label": "June hires" },
+        { "value": "18", "label": "June departures" },
+        { "value": "38", "label": "On-site interviews" },
+        { "value": "994", "label": "Resumes submitted" },
+        { "value": "0%", "label": "Premium increase" }
+      ],
+      "bullets": [
+        "Captive insurance model (~1.2M lives) vs proposed 13% increase from prior carrier.",
+        "Medical: Aetna; dental: Delta Dental; vision: Delta Vision. Enrollment starts August 1.",
+        "Production bonuses begin September payout (for August) from existing $400K annual pool (~$170–180K/month allocation).",
+        "Hiring event next Thursday (1:30–4:30) targeting displaced workers — process technicians and packers."
+      ]
+    }
+  ],
+  "actions": [
+    { "owner": "Robin Rivera", "action": "Send full Travelex travel agency details including dedicated contact by Monday.", "priority": "High", "status": "In Progress" },
+    { "owner": "Michael Dercksen", "action": "Resolve past-due Nest billing; track booking/billing bottlenecks; coordinate production bonus communication.", "priority": "High", "status": "In Progress" },
+    { "owner": "John Humphries", "action": "Lead daily documentation/tracking of file and quality issues; report at next Management Meeting.", "priority": "High", "status": "In Progress" },
+    { "owner": "Greg Goldmann", "action": "Pursue Bobby Brown price increase with Estée Lauder; support onboarding of planner Christian.", "priority": "High", "status": "In Progress" },
+    { "owner": "Steve Habermas", "action": "Support Global Vision rollout; identify automation for Estée Lauder billing/inventory.", "priority": "High", "status": "Not Started" },
+    { "owner": "Josh Kaneff", "action": "Maintain Olaplex relationship and monitor upcoming orders after quality issues.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "John Ranson", "action": "Prepare cause-and-effect quality reports; lead inspection efforts to reduce rejects.", "priority": "High", "status": "Ongoing" },
+    { "owner": "Brian Hopkins", "action": "Improve Imaging/Prepress QC to reduce high file revision rate.", "priority": "High", "status": "In Progress" },
+    { "owner": "Ashley (HR)", "action": "Aggressive hiring including Voyant event — operators, process technicians, glue line.", "priority": "High", "status": "Ongoing" },
+    { "owner": "Manufacturing Leadership", "action": "Increase glue line staffing 81→95; continue operator training to reduce overtime.", "priority": "High", "status": "In Progress" },
+    { "owner": "All Department Managers", "action": "Report production/quality issues immediately — reinforce See Something, Say Something.", "priority": "High", "status": "Effective Immediately" }
+  ],
+  "searchKeywords": ["Steve", "AI", "CTO", "Travelex", "Olaplex", "Estée Lauder", "P&G", "Procter", "Gamble", "freight", "overtime", "Global Vision", "Steve Habermas", "Robin", "Michael", "Greg", "John Humphries", "John Ranson", "Sol de Janeiro", "Oral-B", "Crest", "KDC", "glue line", "Aetna", "bonus", "depreciation", "Echo", "Native", "Clinique", "Bobby Brown"]
+}
