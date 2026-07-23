@@ -1,0 +1,128 @@
+{
+  "id": "may-2026",
+  "title": "May Management Meeting Notes",
+  "month": "May",
+  "year": 2026,
+  "meetingDate": "2026-05-13",
+  "subtitle": "April Business Review",
+  "executiveSummary": [
+    {
+      "theme": "Sales",
+      "line": "April billing and YTD momentum",
+      "metrics": [
+        { "value": "+$300K", "label": "April vs LY" },
+        { "value": "+8.2%", "label": "Billings YTD" },
+        { "value": "+$6.5M", "label": "Bookings vs LY" }
+      ]
+    },
+    {
+      "theme": "Profitability",
+      "line": "Operating profit vs budget",
+      "metrics": [
+        { "value": "96%", "label": "April OP vs budget" },
+        { "value": "86%", "label": "YTD OP vs budget" }
+      ]
+    },
+    {
+      "theme": "Operations",
+      "line": "Factory fully sold",
+      "metrics": [
+        { "value": "8 wk", "label": "Backlog" },
+        { "value": "$60K", "label": "OT / week" },
+        { "value": "245", "label": "Headcount" }
+      ]
+    },
+    {
+      "theme": "Targets",
+      "line": "May billing stretch goals",
+      "metrics": [
+        { "value": "$7.5M", "label": "May target" },
+        { "value": "$8M", "label": "Stretch goal" },
+        { "value": "$375K", "label": "AI Phase 1 paused" }
+      ]
+    }
+  ],
+  "kpis": [
+    { "value": "+$300K", "label": "April Billing vs LY", "subtitle": "+8.2% YTD", "variant": "primary" },
+    { "value": "96%", "label": "April OP vs Budget", "subtitle": "86% YTD", "variant": "default" },
+    { "value": "245", "label": "Headcount", "subtitle": "Cap 250", "variant": "accent" },
+    { "value": "8 wk", "label": "Backlog", "subtitle": "Factory sold", "variant": "warn" },
+    { "value": "+$6.5M", "label": "Bookings vs LY", "subtitle": "Strong pipeline", "variant": "primary" },
+    { "value": "$7.5M", "label": "May Billing Target", "subtitle": "Stretch $8M", "variant": "default" }
+  ],
+  "sections": [
+    {
+      "id": "metrics",
+      "title": "April & YTD Metrics",
+      "expanded": false,
+      "metrics": [
+        { "value": "27.5M", "label": "Cartons (April)" },
+        { "value": "99.9%", "label": "Acceptance" },
+        { "value": "92M", "label": "Cartons YTD" },
+        { "value": "6", "label": "Complaints" }
+      ],
+      "bullets": [
+        "99.98% acceptance YTD on 92M cartons.",
+        "5 of 6 complaints validated."
+      ]
+    },
+    {
+      "id": "financial",
+      "title": "Financial Performance",
+      "expanded": false,
+      "metrics": [
+        { "value": "$7.5M", "label": "May billing target" },
+        { "value": "$350–400K", "label": "May pay-period benefit" },
+        { "value": "+$100K", "label": "OT increase" },
+        { "value": "+$67K", "label": "Freight increase" }
+      ],
+      "bullets": [
+        "Repairs $50K; cold foil top overrun.",
+        "AI Phase 1 $375K paused."
+      ]
+    },
+    {
+      "id": "customers",
+      "title": "Customers & Business Development",
+      "expanded": false,
+      "metrics": [
+        { "value": "9M+", "label": "Revlon cartons" },
+        { "value": "$1.2M", "label": "Revlon sales" },
+        { "value": "$5M", "label": "Revlon OG opp" },
+        { "value": "5M/mo", "label": "Femcare capacity" }
+      ],
+      "bullets": [
+        "Estée Lauder Summit ~200; AI orders live Oct 1; visit Sep/Oct; 3–5% growth by 2027.",
+        "Revlon 300–350K sheets/mo; Oral-B 1.35M units/yr.",
+        "Olaplex 6 projects; QR 10K/hr; >$1M account.",
+        "New: Bubble, LifeVac, Sol de Janeiro, Lux, Rock, Deciem.",
+        "Selective price increases 5–7%; board locked until Nov 2026."
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Operations & Manufacturing",
+      "expanded": false,
+      "metrics": [
+        { "value": "$60K", "label": "OT / week" },
+        { "value": "5M", "label": "Max cartons / mo" },
+        { "value": "4", "label": "Heidelberg + Printnect" }
+      ],
+      "bullets": [
+        "Policy: Do NOT tell customers we are busy — use only \"manufacturing delays.\""
+      ]
+    }
+  ],
+  "actions": [
+    { "owner": "Ryan Scott", "action": "Printnect KPI cost/training by June meeting; UV chart to Mitchell; Univac RAs; K Laser foil.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "John Humphries", "action": "Printnect mobile app rollout; licensing cost.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Michael Dercksen", "action": "3-shift capacity report; cold foil linear-feet go-live.", "priority": "High", "status": "In Progress" },
+    { "owner": "Greg Pandolfi", "action": "Back-office IT security fixes; AT&T line; TVs.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Gregg Goldman / Mitchell", "action": "Estée Lauder quality visit (Bernice Vittori) Sep/Oct.", "priority": "High", "status": "Planned" },
+    { "owner": "Walt Shiels", "action": "Corey Johnson Brown Summit tour (mid-July); weekly headcount with Robin.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "John Ranson", "action": "Olaplex AQL; Shiseido catch process; Eco3 trials.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Robin Rivera", "action": "Apprenticeship sign-offs; LinkedIn Recruiter $170/mo.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Josh / Max Kaneff", "action": "\"The Huddle\" proposal; Karrass insights; Darkroom/LinkedIn.", "priority": "Low", "status": "In Progress" }
+  ],
+  "searchKeywords": ["Revlon", "Olaplex", "Estée Lauder", "Oral-B", "Printnect", "AI", "Robin", "Michael", "Ryan", "overtime", "freight", "P&G", "Sol de Janeiro", "Steve"]
+}
