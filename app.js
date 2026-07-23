@@ -34,6 +34,14 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+function numSizeClass(value) {
+  const len = String(value).replace(/\s/g, "").length;
+  if (len <= 4) return "size-sm";
+  if (len <= 6) return "size-md";
+  if (len <= 9) return "size-lg";
+  return "size-xl";
+}
+
 function renderMonthBar() {
   const bar = document.getElementById("month-bar");
   bar.innerHTML = manifest
@@ -53,7 +61,7 @@ function renderSummaryBlock(item) {
   const pills = (item.metrics || [])
     .map(
       (m) =>
-        `<span class="metric-pill"><span class="metric-pill-num">${escapeHtml(m.value)}</span><span class="metric-pill-label">${escapeHtml(m.label)}</span></span>`
+        `<span class="metric-pill"><span class="metric-pill-num ${numSizeClass(m.value)}">${escapeHtml(m.value)}</span><span class="metric-pill-label">${escapeHtml(m.label)}</span></span>`
     )
     .join("");
   return `<div class="summary-block">
@@ -66,7 +74,7 @@ function renderSummaryBlock(item) {
 function renderKpiCard(kpi) {
   const v = kpi.variant || "default";
   return `<div class="kpi-card kpi-${v}">
-    <div class="kpi-num">${escapeHtml(kpi.value)}</div>
+    <div class="kpi-num ${numSizeClass(kpi.value)}">${escapeHtml(kpi.value)}</div>
     <div class="kpi-label">${escapeHtml(kpi.label)}</div>
     ${kpi.subtitle ? `<div class="kpi-sub">${escapeHtml(kpi.subtitle)}</div>` : ""}
   </div>`;
@@ -77,7 +85,7 @@ function renderMiniMetrics(metrics) {
   return `<div class="mini-metrics">${metrics
     .map(
       (m) =>
-        `<div class="mini-metric"><div class="mini-metric-num">${escapeHtml(m.value)}</div><div class="mini-metric-label">${escapeHtml(m.label)}</div></div>`
+        `<div class="mini-metric"><div class="mini-metric-num ${numSizeClass(m.value)}">${escapeHtml(m.value)}</div><div class="mini-metric-label">${escapeHtml(m.label)}</div></div>`
     )
     .join("")}</div>`;
 }
