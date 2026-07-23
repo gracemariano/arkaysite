@@ -1,0 +1,5 @@
+[
+  { "id": "july-2026", "file": "july-2026.json", "month": "July", "year": 2026, "meetingDate": "2026-07-22", "label": "Latest" },
+  { "id": "june-2026", "file": "june-2026.json", "month": "June", "year": 2026, "meetingDate": "2026-06-17", "label": "June" },
+  { "id": "may-2026", "file": "may-2026.json", "month": "May", "year": 2026, "meetingDate": "2026-05-13", "label": "May" }
+]
