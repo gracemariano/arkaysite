@@ -1,0 +1,249 @@
+{
+  "id": "august-2026",
+  "title": "August Management Meeting Notes",
+  "month": "August",
+  "year": 2026,
+  "meetingDate": "2026-08-18",
+  "subtitle": "July Business Review",
+  "executiveSummary": [
+    {
+      "theme": "July billings",
+      "line": "Strong July revenue and operating profit",
+      "metrics": [
+        { "value": "$7.5M", "label": "July billings" },
+        { "value": "+8.3%", "label": "Billings YoY" },
+        { "value": "+$578K", "label": "vs last year" }
+      ]
+    },
+    {
+      "theme": "Profitability",
+      "line": "One of the year's best margin months",
+      "metrics": [
+        { "value": "+$269K", "label": "Operating profit" },
+        { "value": "+31.7%", "label": "OP vs LY" },
+        { "value": "~30%", "label": "Underlying margin" }
+      ]
+    },
+    {
+      "theme": "Bookings",
+      "line": "Pipeline remains well ahead of prior year",
+      "metrics": [
+        { "value": "+$11M", "label": "Bookings ahead YTD" },
+        { "value": "+23%", "label": "vs last year" },
+        { "value": "+7%", "label": "Billings YTD" }
+      ]
+    },
+    {
+      "theme": "Staffing",
+      "line": "Headcount and glue line growing",
+      "metrics": [
+        { "value": "260", "label": "Headcount" },
+        { "value": "91", "label": "Glue line" },
+        { "value": "23", "label": "Hires (month)" }
+      ]
+    },
+    {
+      "theme": "Quality",
+      "line": "July shipping vs July 2025",
+      "metrics": [
+        { "value": "26.3M+", "label": "Cartons shipped" },
+        { "value": "0", "label": "Rejected (Jul '26)" },
+        { "value": "3", "label": "External rejects YTD" }
+      ]
+    },
+    {
+      "theme": "NFL / FemCare",
+      "line": "New large FemCare opportunity",
+      "metrics": [
+        { "value": "25K", "label": "First order" },
+        { "value": "150K+", "label": "Future by team" }
+      ]
+    },
+    {
+      "theme": "Capital",
+      "line": "Glue line investment under review",
+      "metrics": [
+        { "value": "$2–2.5M", "label": "New glue line est." },
+        { "value": "$740K", "label": "Globe YTD spend" }
+      ]
+    }
+  ],
+  "kpis": [
+    { "value": "$7.5M", "label": "July Billings", "subtitle": "+8.3% YoY (+$578K)", "variant": "primary" },
+    { "value": "+$269K", "label": "Operating Profit", "subtitle": "+31.7% YoY", "variant": "primary" },
+    { "value": "+$11M", "label": "Bookings Ahead", "subtitle": "~23% vs prior year", "variant": "primary" },
+    { "value": "260", "label": "Headcount", "subtitle": "Glue line: 91", "variant": "accent" },
+    { "value": "~30%", "label": "Underlying Margin", "subtitle": "One of year's best", "variant": "default" },
+    { "value": "26.3M+", "label": "Cartons Shipped", "subtitle": "July · 0 rejected", "variant": "default" },
+    { "value": "25K", "label": "NFL First Order", "subtitle": "150K+ future", "variant": "warn" },
+    { "value": "$740K", "label": "Globe Outsourcing", "subtitle": "YTD vs $420K LY", "variant": "warn" }
+  ],
+  "sections": [
+    {
+      "id": "opening",
+      "title": "Opening Remarks — Mitchell Kaneff",
+      "expanded": false,
+      "bullets": [
+        "Recognized retirees John Sheridan (recently retired) and Wes (departed prior Friday).",
+        "Welcomed John Ranson to the team.",
+        "Highlighted next-gen leadership, promotions (Izzy and Manny), and growth from within.",
+        "Set tone: more transparency, open dialogue, and a \"get better, not blame\" culture."
+      ]
+    },
+    {
+      "id": "financial",
+      "title": "Financial Performance — July Review",
+      "expanded": false,
+      "metrics": [
+        { "value": "$7.504M", "label": "July billings" },
+        { "value": "+8.3%", "label": "Billings YoY" },
+        { "value": "+$269K", "label": "Operating profit" },
+        { "value": "+31.7%", "label": "OP vs LY" },
+        { "value": "26.3%", "label": "Reported P&L margin" },
+        { "value": "~30%", "label": "Underlying margin" }
+      ],
+      "bullets": [
+        "July 2026 comparative billings: $6.927M prior year.",
+        "Positive drivers: volume, favorable customer mix, depreciation savings (~$75K — presses 418/419 fully depreciated), SG&A flat, positive interest variance.",
+        "Negative drags: overtime (five-week pay period), factory expenses, freight, repairs & maintenance (+$60K, incl. ~$40K on 418 press die cutter).",
+        "Inventory up ~$1M total; finished goods underlying increase only ~$180K — main driver was higher WIP.",
+        "Globe outsourcing YTD (7 months): $740K vs $420K same period last year.",
+        "Bookings ~$11M+ ahead of last year (~23% higher); billings up ~7%. Revenue counter moved 80 → 85; goal closer to 100% over final five months.",
+        "Expecting to produce over $7M this month; billing report ~$6.2–6.3M with two weeks remaining."
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Manufacturing & Capacity",
+      "expanded": false,
+      "metrics": [
+        { "value": "$2–2.5M", "label": "New glue line est." },
+        { "value": "~50%", "label": "Glue line utilization" },
+        { "value": "+$500", "label": "Avg load cost increase" }
+      ],
+      "bullets": [
+        "Overtime remains elevated due to serialization, glue line demand, window machines, and booming FemCare volume.",
+        "Considering additional glue line given heavy outsourcing to Globe — ROI presentation for next meeting.",
+        "Mike Sanctuary exploring second soft window machine; quotes being gathered.",
+        "Rework takes 12–15 hours per rock job; truck/transport prices up ~$500 average per load."
+      ]
+    },
+    {
+      "id": "nfl",
+      "title": "NFL / FemCare Opportunity",
+      "expanded": false,
+      "metrics": [
+        { "value": "25,000", "label": "First order pcs" },
+        { "value": "150K+", "label": "Future by team" },
+        { "value": "~$1", "label": "First run / piece" }
+      ],
+      "bullets": [
+        "New large FemCare business for the NFL.",
+        "First distribution/opening around 9/5–9/13; 50 samples needed at game one; balance due around week three.",
+        "Future broken out by team — ~150,000 pieces projected; subsequent quoted up to ~$150,000."
+      ]
+    },
+    {
+      "id": "customers",
+      "title": "Customer Updates",
+      "expanded": false,
+      "bullets": [
+        "Revlon / Arden: Two-year contract in negotiation; 20 additional lines to reprice (~800K–1M more cartons); effective January; ~$1.2M payment received.",
+        "Oral-B: First order ~15,000 pieces due October; bevel box approved; hologram orientation fix needed.",
+        "Sol de Janeiro: Booming; new booking ~$170,000 (butter cream press proof); moving production out of China.",
+        "Nest: Billings down ~1.5 but bookings up ~$500K — timing, not concern.",
+        "L'Oréal: Down significantly (~$600K holiday promo not repeated).",
+        "Estée Lauder: Shortfall not expected to recover in second half.",
+        "KDC One / LifePack / Ariana Grande / Chloe: Various programs in progress."
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "Quality Review",
+      "expanded": false,
+      "metrics": [
+        { "value": "26.3M+", "label": "Cartons (July)" },
+        { "value": "0", "label": "Rejected (Jul '26)" },
+        { "value": "202,580", "label": "Rejected Jul '25" },
+        { "value": "3", "label": "External rejects YTD" },
+        { "value": "$15,729", "label": "Credit memos" },
+        { "value": "6", "label": "Complaints" }
+      ],
+      "bullets": [
+        "July 2025: 21.26M cartons, 867 deliveries, 202,580 rejected. July 2026: 26.3M+, 899 deliveries, 0 rejected.",
+        "External rejects: 3 this year vs goal of 8 (half of last year).",
+        "Complaints (6): 2 PNG unglued/bent flaps, bowed cartons, Clinique Christmas transit, Olaplex faded logo, unglued Rock.",
+        "Do-overs: 8 jobs, 83,147 cartons (~$22K estimate). Brown Summit downtime: 23% (trending down).",
+        "Scorecards 100%: Luxe, Nest, Rock, Revlon, Glossier, Sol de Janeiro, Estée Lauder GQMS. Olaplex 99%; P&G 95%; Scentbird 95%."
+      ]
+    },
+    {
+      "id": "global-vision",
+      "title": "Global Vision Rollout",
+      "expanded": false,
+      "metrics": [
+        { "value": "27", "label": "Daily file issues" },
+        { "value": "~50%", "label": "File issues reduction" },
+        { "value": "17", "label": "Report diffs flagged" }
+      ],
+      "bullets": [
+        "Training complete; verified across QR, Data Matrix, UPC-A barcodes.",
+        "Daily file issues tracking: 27 (down ~50% from prior ~50).",
+        "Goal: eliminate manual copy check by end of year / early Q1.",
+        "Cloud-based AI tool \"Verify\" in development (live copy vs outline copy)."
+      ]
+    },
+    {
+      "id": "staffing",
+      "title": "Staffing & HR",
+      "expanded": false,
+      "metrics": [
+        { "value": "260", "label": "Total headcount" },
+        { "value": "91", "label": "Glue line" },
+        { "value": "23", "label": "Hires" },
+        { "value": "9", "label": "Terminations" },
+        { "value": "40", "label": "Interviews" }
+      ],
+      "bullets": [
+        "Past month: 5 orientations, 15 no-shows; ~5 glue line interviews scheduled this week.",
+        "Talent from Vuoyant closing: operator/maintenance mechanic, quality person starting Sept 1, 2 packers.",
+        "Succession: Big Manny replacing Gordy (through year-end); Little Manny → day-shift supervisor; Andrew Price possible third-shift supervisor return.",
+        "Housing challenge: local rent ~$1,500/month; building costs up ~50%.",
+        "Ryan Scott third-operator proposal: ~9 hrs/day × 250 days × 6,000/hr = 13M+ sheets/year potential; trial on day shift first."
+      ]
+    },
+    {
+      "id": "technology",
+      "title": "Technology & AI — Steve Habermas",
+      "expanded": false,
+      "metrics": [
+        { "value": "~50", "label": "Copilot licenses" },
+        { "value": "300→1G", "label": "NY bandwidth" },
+        { "value": "~$300K", "label": "Spot robot est." }
+      ],
+      "bullets": [
+        "Copilot: ~50 licenses; training program being finalized. Voice AI agent capturing institutional knowledge.",
+        "Traba / Neo platform: POC for scheduling, purchasing/estimating, reporting — Scott Tanzer's data team.",
+        "ERP: 3 consultants shortlisted; outside firm to document processes (~20% manager time, ~2 months from September).",
+        "AMS/WMS: ESL inventory report, schedule change reason codes, quote automation, barcode scanning.",
+        "Roanoke bandwidth upgrade scheduled August 24; warehouse Wi-Fi upgrade underway.",
+        "Boston Dynamics \"Spot\" demo requested week of October 10 — target $250K–$275K financed."
+      ]
+    }
+  ],
+  "actions": [
+    { "owner": "Michael Dercksen & Mike Sanctuary", "action": "Full ROI presentation on new glue line machine (cost, utilization, capacity analysis).", "priority": "High", "status": "Next Meeting" },
+    { "owner": "Mike Sanctuary / Derek", "action": "Gather quotes for additional software window machine; categorize Globe spend by gluing vs die-cutting.", "priority": "High", "status": "In Progress" },
+    { "owner": "Steve Habermas / Gregg / Curtis", "action": "Fix video conferencing audio, mic, speaker, and camera tracking before next meeting.", "priority": "High", "status": "In Progress" },
+    { "owner": "Steve Habermas", "action": "Complete Roanoke bandwidth upgrade (Aug 24) and warehouse Wi-Fi; roll out Neo/Traba training within ~2 weeks.", "priority": "High", "status": "In Progress" },
+    { "owner": "John Ranson", "action": "Update pre-press SOPs to include Global Vision.", "priority": "High", "status": "In Progress" },
+    { "owner": "John Humphries", "action": "Prepare top 3 Global Vision customer benefits for Thursday sales meeting.", "priority": "Medium", "status": "In Progress" },
+    { "owner": "Ryan Scott & Frank", "action": "Develop day-shift third-operator trial plan with overtime-savings numbers.", "priority": "High", "status": "In Progress" },
+    { "owner": "Ashley / Robin Rivera", "action": "Continue recruiting for glue line and third-shift supervisor role.", "priority": "High", "status": "Ongoing" },
+    { "owner": "Walter Shiels / Sales", "action": "Finalize Revlon/Arden two-year contract; execute NFL first shipment (25K) and monitor 150K follow-on.", "priority": "High", "status": "In Progress" },
+    { "owner": "Sales Team", "action": "Track Oral-B (Oct), Sol de Janeiro, FemCare, and KDC One growth.", "priority": "Medium", "status": "Ongoing" },
+    { "owner": "Steve Habermas", "action": "Coordinate Boston Dynamics Spot demo (week of Oct 10) with ROI business case.", "priority": "Medium", "status": "Planned" },
+    { "owner": "Facilities", "action": "Evaluate smaller Epson printer options for customer offices (Sol de Janeiro sticky-customer strategy).", "priority": "Low", "status": "In Progress" }
+  ],
+  "searchKeywords": ["Mitchell", "Michael", "Steve", "AI", "Copilot", "Globe", "glue line", "NFL", "FemCare", "Oral-B", "Revlon", "Sol de Janeiro", "Olaplex", "P&G", "Estée Lauder", "L'Oréal", "Nest", "Global Vision", "John Humphries", "John Ranson", "Ryan Scott", "Robin", "Ashley", "overtime", "Spot robot", "Boston Dynamics", "bookings", "billings", "John Sheridan", "Vuoyant", "Neo", "Traba"]
+}
